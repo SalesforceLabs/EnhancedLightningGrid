@@ -1,0 +1,18 @@
+<!-- Copyright (c) 2018, salesforce.com, inc. 
+    * All rights reserved. 
+    * SPDX-License-Identifier: BSD-3-Clause 
+    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+-->
+<aura:component abstract="true">
+    <!-- Abstract base component -->
+    <aura:attribute name="DebugLog" type="String[]" default="" />
+    <aura:attribute name="ShowDebug" type="Boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.doBaseInit}" />
+
+    <div aura:id="placeholder">
+        {!v.body}
+    </div>
+
+
+
+</aura:component>

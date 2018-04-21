@@ -1,0 +1,17 @@
+@media screen and (max-width: 480px) {
+    
+    .THIS .sdgcol{
+        display:block;
+        padding:10px;
+    }
+}
+.THIS.slds-is-sortable
+{
+    cursor:pointer;
+}
+.THIS .sdgcolheader
+{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}

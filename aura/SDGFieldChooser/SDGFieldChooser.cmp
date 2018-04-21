@@ -1,0 +1,66 @@
+<!-- Copyright (c) 2018, salesforce.com, inc. 
+    * All rights reserved. 
+    * SPDX-License-Identifier: BSD-3-Clause 
+    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+-->
+<aura:component controller="sdgDesigner" implements="force:hasRecordId">
+    <aura:attribute name="rootObjectType" type="string" />
+    <aura:attribute name="recordId" type="Id" />
+
+    <aura:attribute name="sObjectFields" type="Array" />
+    <aura:attribute name="nodes" type="string[]" default="" />
+    <aura:attribute name="selectedField" type="object" default="" />
+    <aura:attribute name="selectedPath" type="String" default="" />
+    <aura:attribute name="initialPath" type="String" default="" />
+    <aura:attribute name="ShowFieldSelector" type="Boolean" default="true" />
+    <aura:attribute name="onlyIDs" type="Boolean" default="false" />
+    <aura:attribute name="PickerDisabled" type="Boolean" default="true" />
+    <aura:attribute name="showClear" type="Boolean" default="false" />
+    <aura:attribute name="isValid" type="Boolean" default="false" />
+
+    <aura:attribute name="Label" type="String" default="" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:method name="clearselection" action="{!c.clear}" />
+
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="input-id-02">{!v.Label}</label>
+        <div class="slds-form-element__control">
+
+            <span>
+                <ol class="slds-breadcrumb slds-list_horizontal slds-wrap">
+                    <aura:iteration items="{!v.nodes}" var="item">
+
+                        <li class="slds-breadcrumb__item  fieldchosen">
+                            <a href="javascript:void(0);">{!item}</a>
+                        </li>
+
+                    </aura:iteration>
+                    <aura:if isTrue="{!v.ShowFieldSelector}">
+                        <li class="slds-breadcrumb__item fieldchosen">
+                            <div aura:id="picker" class=" ">
+
+                                <lightning:select name="fieldSelect" class="fieldchooser" label="Field picker" variant="label-hidden" disabled="{!v.PickerDisabled}"
+                                    aura:id="sFieldSelector" value="{!v.selectedField}" onchange="{!c.sFieldChanged}">
+                                    <aura:iteration items="{!v.sObjectFields}" var="item">
+                                        <option text="{!item.label}" value="{!item.fieldname}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                        </li>
+                    </aura:if>
+                    <aura:if isTrue="{!v.showClear}">
+                        <span class="fieldchosen slds-m-left_small">
+                            <lightning:buttonIcon alternativetext="Clear" variant="inverse" iconName="utility:clear" aura:id="clearpicker" onclick="{!c.clear}"
+                            />
+                        </span>
+                    </aura:if>
+                </ol>
+
+            </span>
+            <span>
+
+            </span>
+        </div>
+    </div>
+</aura:component>

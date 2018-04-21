@@ -1,0 +1,206 @@
+<!-- Copyright (c) 2018, salesforce.com, inc. 
+    * All rights reserved. 
+    * SPDX-License-Identifier: BSD-3-Clause 
+    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+-->
+<aura:component implements="force:lightningQuickAction">
+    <div class="slds">
+        <div class="slds-text-longform">
+            <h3 class="slds-text-heading_small">Overview</h3>
+            <p>
+                Sortable data grids comprise of a master record, and two types of detail records: Fields and Actions.
+            </p>
+            <p>Once a configuration is complete, then you can add to a page using Lightning App Builder.
+            </p>
+            <h3 class="slds-text-heading_small slds-m-top_xx-large">Sortable Data Grid</h3>
+
+            <p>
+                The master record controls how the query is filtered and linked to a parent record.
+            </p>
+
+            <table class="slds-table slds-table_bordered">
+                <thead>
+                    <tr class="slds-text-heading_label">
+                        <td class="slds-cell-wrap">
+                            <b>Attribute</b>
+                        </td>
+                        <td class="slds-cell-wrap">
+                            <b>Purpose</b>
+                        </td>
+                        <td class="slds-cell-wrap">
+                            <b>Example</b>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Name</td>
+                        <td class="slds-cell-wrap">Unique identifier for the configuration</td>
+                        <td class="slds-cell-wrap">My sortable grid</td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">sObjectName</td>
+                        <td class="slds-cell-wrap">API Name for the record to be rendered (provides the base from which all other fields navigate).
+                            Example - if you are trying to render contacts on an account page, then this would be set to
+                            Contact</td>
+                        <td class="slds-cell-wrap">Contact</td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Parent Field Name</td>
+                        <td class="slds-cell-wrap">Optional: Filter the records from (sObjectName) based on the record id provided by Lightning for
+                            the host page. eg to show only Contacts for an Account then use account.id </td>
+                        <td class="slds-cell-wrap">account.id</td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Filter</td>
+                        <td class="slds-cell-wrap">Optional: Use to perform server side filter. For example - only show Contacts that have email addresses.
+                            This filter is not visible to users.</td>
+                        <td class="slds-cell-wrap"> email!='' </td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Default Sort</td>
+                        <td class="slds-cell-wrap">Optional: to use to perform default sorting. For example - order contacts by first name. </td>
+                        <td
+                            class="slds-cell-wrap"> firstname </td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">is Valid</td>
+                        <td class="slds-cell-wrap">Optional: Allow the configuration to be used </td>
+                        <td class="slds-cell-wrap"> </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <h3 class="slds-text-heading_small slds-m-top_xx-large">Field</h3>
+
+            <p>
+                The Field record controls which fields are rendered
+            </p>
+
+            <table class="slds-table slds-table_bordered">
+                <thead>
+                    <tr class="slds-text-heading_label">
+                        <td class="slds-cell-wrap">
+                            <b>Attribute</b>
+                        </td>
+                        <td class="slds-cell-wrap">
+                            <b>Purpose</b>
+                        </td>
+                        <td class="slds-cell-wrap">
+                            <b>Examples</b>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">APIName</td>
+                        <td class="slds-cell-wrap">Fully namespaced APIName of the field to be rendered. Supports object traversal. eg Account.Name</td>
+                        <td
+                            class="slds-cell-wrap">Name
+                            <br/>Account.Name
+                            <br/>LastModifiedBy.Phone</td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Override Label</td>
+                        <td class="slds-cell-wrap">Override the default label</td>
+                        <td class="slds-cell-wrap">Our Amount</td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Field Order</td>
+                        <td class="slds-cell-wrap">Order of the fields</td>
+                        <td class="slds-cell-wrap">3</td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Hide Filter</td>
+                        <td class="slds-cell-wrap">Fields are always displayed, but you can hide the filter for this field if desired</td>
+                        <td class="slds-cell-wrap">
+                        </td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">isValid</td>
+                        <td class="slds-cell-wrap">Needs to be checked to display on page. If there is an error with the configuration, the system will
+                            automatically uncheck this box.</td>
+                        <td class="slds-cell-wrap"> </td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Custom Renderer</td>
+                        <td class="slds-cell-wrap">Provides a custom renderer for the field - eg convert an id into a hyperlink, or a date into a 'time
+                            ago', or render a formula that emits html as raw html</td>
+                        <td class="slds-cell-wrap"> </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+            <h3 class="slds-text-heading_small slds-m-top_xx-large">Action</h3>
+
+            <p>
+                The Action record controls which actions are rendered.
+            </p>
+            <table class="slds-table slds-table_bordered">
+                <thead>
+                    <tr class="slds-text-heading_label">
+                        <td class="slds-cell-wrap">
+                            <b>Attribute</b>
+                        </td>
+                        <td class="slds-cell-wrap">
+                            <b>Purpose</b>
+                        </td>
+                        <td class="slds-cell-wrap">
+                            <b>Examples</b>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Event</td>
+                        <td class="slds-cell-wrap">Fully qualified event name. Component is only able to throw global events and evtObjectManager events.
+                            If you want to use another event, then raise an evtObjectManager event and catch the payload.</td>
+                        <td
+                            class="slds-cell-wrap">e.force.editRecord
+                            <br/> e.c:evtObjectManager</td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Action Order</td>
+                        <td class="slds-cell-wrap">Order of the action</td>
+                        <td class="slds-cell-wrap">3</td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Requires Creatable</td>
+                        <td class="slds-cell-wrap">Only show action if the current user has Create rights for the sObjectName type on the Sortable Data
+                            Grid record. </td>
+                        <td class="slds-cell-wrap"></td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Requires Editable</td>
+                        <td class="slds-cell-wrap">Only show if the current user has Edit rights for the sObjectName type on Sortable Data Grid record.</td>
+                        <td
+                            class="slds-cell-wrap"></td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Requires Deletable</td>
+                        <td class="slds-cell-wrap">Only show if the current user has Deletable rights for the sObjectName type on Sortable Data Grid
+                            record.</td>
+                        <td class="slds-cell-wrap"></td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Action Type</td>
+                        <td class="slds-cell-wrap">Set the display style for the button. List buttons cannot reference the selected row. </td>
+                        <td class="slds-cell-wrap">List/Row</td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td class="slds-cell-wrap">Event payload</td>
+                        <td class="slds-cell-wrap">Javascript object payload for event. Supports merging of sdgField values that are on the grid - using
+                            delimited #fieldname# syntax. Also supports #ids# (for multiple rows) and #parentrecordId# for
+                            host page record Id</td>
+                        <td class="slds-cell-wrap">{
+                            <br/> "recordId":"#Id#", "somethingelse" : #parentrecordId#
+                            <br/> }
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</aura:component>

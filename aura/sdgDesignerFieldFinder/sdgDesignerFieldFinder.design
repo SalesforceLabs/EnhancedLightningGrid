@@ -1,0 +1,5 @@
+<design:component label="Field Finder">
+		<sfdc:objects >
+        <sfdc:object >SDG__c</sfdc:object>
+    </sfdc:objects>
+</design:component>

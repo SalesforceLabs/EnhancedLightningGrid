@@ -1,0 +1,10 @@
+.THIS.fullheight {
+    height:100%;
+    background: whitesmoke;
+    
+    overflow-y:scroll;
+}
+.THIS.fullheight .sdgborder
+{
+    border:none;
+}

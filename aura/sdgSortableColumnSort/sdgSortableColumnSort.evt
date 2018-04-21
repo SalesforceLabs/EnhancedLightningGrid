@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="SDG SortableColumnSort">
+    <aura:attribute name="SDGFieldID" type="String" />
+    <aura:attribute name="SortOrder" type="String" />
+</aura:event>

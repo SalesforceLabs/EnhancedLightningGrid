@@ -1,0 +1,16 @@
+<!-- Copyright (c) 2018, salesforce.com, inc. 
+    * All rights reserved. 
+    * SPDX-License-Identifier: BSD-3-Clause 
+    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+-->
+<aura:component>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
+    <aura:attribute name="renderfield" type="object" access="global" />
+    <aura:attribute name="sdgAgo" type="String" access="public" default="{!$Label.c.sdgAgo}" />
+    <aura:attribute name="sdgIn" type="String" access="public" default="{!$Label.c.sdgIn}" />
+
+    <td data-label="{#v.renderfield.FieldLabel}" class="pullleft pullup">
+
+        <div class="slds-truncate">{!v.body}</div>
+    </td>
+</aura:component>

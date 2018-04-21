@@ -1,0 +1,42 @@
+<!-- Copyright (c) 2018, salesforce.com, inc. 
+    * All rights reserved. 
+    * SPDX-License-Identifier: BSD-3-Clause 
+    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+-->
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="sdgDesigner">
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="selectedPath" type="String" />
+    <aura:attribute name="isValid" type="Boolean" default="false" />
+    <aura:attribute name="namespace" type="string" default="sortablegrid" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <div class="slds-page-header slds-page-header_object-home slds-m-bottom_medium slds-box">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media slds-no-space slds-grow">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-lead">
+                            <lightning:icon iconName="standard:custom" alternativetext="icon" />
+
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <p class="slds-text-title_caps slds-line-height_reset">Field Finder</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <c:SDGFieldChooser aura:id="picker" recordId="{!v.recordId}" selectedPath="{!v.selectedPath}" isValid="{!v.isValid}" />
+
+        <aura:if isTrue="{!v.isValid}">
+
+            <lightning:buttongroup class="slds-m-top_medium">
+
+                <lightning:button label="Add Field" onclick="{!c.AddField}"></lightning:button>
+            </lightning:buttongroup>
+        </aura:if>
+    </div>
+</aura:component>

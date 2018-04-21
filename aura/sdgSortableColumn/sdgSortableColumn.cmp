@@ -1,0 +1,46 @@
+<!-- Copyright (c) 2018, salesforce.com, inc. 
+    * All rights reserved. 
+    * SPDX-License-Identifier: BSD-3-Clause 
+    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+-->
+
+<aura:component>
+    <aura:attribute name="SDGField" type="object" />
+    <aura:attribute name="SortOrder" type="String" default="A" />
+    <aura:attribute name="isSorted" type="Boolean" default="False" />
+    <aura:attribute name="isSortedA" type="Boolean" default="False" />
+    <aura:attribute name="isSortedD" type="Boolean" default="False" />
+
+    <aura:attribute name="CurrentSortedColumn" type="String" />
+    <aura:attribute name="CurrentSortedOrder" type="String" />
+    <aura:handler name="change" value="{!v.CurrentSortedColumn}" action="{!c.sortchanged}" />
+    <aura:handler name="change" value="{!v.CurrentSortedOrder}" action="{!c.sortchanged}" />
+
+    <aura:registerEvent name="SDGSortableColumnSort" type="c:sdgSortableColumnSort" />
+    <aura:renderIf isTrue="{!v.SDGField.canSort}">
+
+        <th class="slds-is-sortable sdgcol" scope="col" onclick="{!c.sort}">
+            <div class="sdgcolheader">
+                <div class="sortcol hidden">{!v.SDGField.ID}</div>
+                <span class="slds-truncate slds-text-link_reset">{!v.SDGField.Label}
+                    <aura:renderIf isTrue="{!v.isSortedA}">
+                        <lightning:icon aura:id="arrowup" iconName="utility:arrowup" size="xx-small" />
+
+                    </aura:renderIf>
+                    <aura:renderIf isTrue="{!v.isSortedD}">
+                        <lightning:icon aura:id="arrowdown" iconName="utility:arrowdown" size="xx-small" />
+
+                    </aura:renderIf>
+
+                </span>
+            </div>
+        </th>
+        <aura:set attribute="else">
+            <th scope="col" class="sdgcol slds-p-around_x-small ">
+                <span class="slds-truncate">{!v.SDGField.Label}
+                </span>
+            </th>
+        </aura:set>
+    </aura:renderIf>
+
+</aura:component>

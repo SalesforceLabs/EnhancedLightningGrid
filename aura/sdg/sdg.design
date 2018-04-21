@@ -1,0 +1,21 @@
+<design:component label="Enhanced Lightning Grid">
+    <design:attribute name="Title" label="Title" description="Title for the panel" default="" />
+    <design:attribute name="SVGName" label="SVG Name" description="Name of the SLDS icon to use: visit https://www.lightningdesignsystem.com/resources/icons for more options"
+        default="standard:account" />
+    <design:attribute name="SDGConfiguration" label="Data Provider" description="Available configurations" datasource="apex://sdgProperties"
+    />
+    <design:attribute name="HideOnError" label="Hide component on error" description="Useful if the SDG's are private and you don't want everyone to see empty placeholders"
+    />
+    <design:attribute name="ShowDebug" label="Debug mode" description="Show the debug log" />
+    <design:attribute name="UseCache" label="Cache Data" description="Cache result sets in the browser" />
+    <design:attribute name="UseBackground" label="Use Background request" description="Load data in the background rather than foreground"
+    />
+    <design:attribute name="PreventResponsiveness" label="Disable Card view" description="Prevents responsive reflow when placed in narrow segments"
+    />
+    <design:attribute name="DefaultPageSize" label="Initial Page Size" datasource="10,20,50,100" default="10" />
+
+    <design:attribute name="RelationshipName" label="RelationshipName" description="Relationship name to the child object (eg to show Opportunities on Account, set value to 'Opportunities')"
+    />
+    <design:attribute name="FieldSetName" label="FieldSetName" description="Name of field set of child objects" />
+
+</design:component>

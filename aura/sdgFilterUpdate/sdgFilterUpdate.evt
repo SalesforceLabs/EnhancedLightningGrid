@@ -1,0 +1,5 @@
+<aura:event type="COMPONENT" description="SDG FilterUpdate">
+    <aura:attribute name="SDGFieldID" type="String" />
+    <aura:attribute name="FilterOperator" type="String" />
+    <aura:attribute name="FilterValue" type="String" />
+</aura:event>

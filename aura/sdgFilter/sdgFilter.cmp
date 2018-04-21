@@ -1,0 +1,152 @@
+<!-- Copyright (c) 2018, salesforce.com, inc. 
+    * All rights reserved. 
+    * SPDX-License-Identifier: BSD-3-Clause 
+    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+-->
+<aura:component controller="sdgController">
+    <aura:attribute name="SDGField" type="object" />
+
+    <aura:attribute name="FilterOperator" type="string" />
+    <aura:attribute name="FilterValue" type="string" />
+    <aura:attribute name="DateValue" type="Date" />
+    <aura:attribute name="canFilter" type="Boolean" default="false" />
+    <aura:attribute name="isDate" type="Boolean" default="false" />
+    <aura:attribute name="isString" type="Boolean" default="false" />
+    <aura:attribute name="isNumber" type="Boolean" default="false" />
+    <aura:attribute name="FilterOperatorPreference" type="String" />
+    <aura:attribute name="NumberOperator" type="String" />
+
+    <aura:attribute name="FilterValuePreference" type="Boolean" default="false" />
+
+    <!--Labels-->
+    <aura:attribute name="sdgEquals" type="String" access="public" default="{!$Label.c.sdgEquals}" />
+    <aura:attribute name="sdgNotEquals" type="String" access="public" default="{!$Label.c.sdgNotEquals}" />
+    <aura:attribute name="sdgStarts" type="String" access="public" default="{!$Label.c.sdgStarts}" />
+    <aura:attribute name="sdgEnds" type="String" access="public" default="{!$Label.c.sdgEnds}" />
+    <aura:attribute name="sdgContains" type="String" access="public" default="{!$Label.c.sdgContains}" />
+    <aura:attribute name="sdgNotContains" type="String" access="public" default="{!$Label.c.sdgNotContains}" />
+    <aura:attribute name="sdgAfter" type="String" access="public" default="{!$Label.c.sdgAfter}" />
+    <aura:attribute name="sdgBefore" type="String" access="public" default="{!$Label.c.sdgBefore}" />
+
+    <aura:attribute name="sdgTomorrow" type="String" access="public" default="{!$Label.c.sdgTomorrow}" />
+    <aura:attribute name="sdgToday" type="String" access="public" default="{!$Label.c.sdgToday}" />
+    <aura:attribute name="sdgYesterday" type="String" access="public" default="{!$Label.c.sdgYesterday}" />
+    <aura:attribute name="sdgNextWeek" type="String" access="public" default="{!$Label.c.sdgNextWeek}" />
+    <aura:attribute name="sdgThisWeek" type="String" access="public" default="{!$Label.c.sdgThisWeek}" />
+    <aura:attribute name="sdgLastWeek" type="String" access="public" default="{!$Label.c.sdgLastWeek}" />
+
+    <aura:attribute name="sdgNextMonth" type="String" access="public" default="{!$Label.c.sdgNextMonth}" />
+    <aura:attribute name="sdgLastMonth" type="String" access="public" default="{!$Label.c.sdgLastMonth}" />
+    <aura:attribute name="sdgThisMonth" type="String" access="public" default="{!$Label.c.sdgThisMonth}" />
+    <aura:attribute name="sdgNextQuarter" type="String" access="public" default="{!$Label.c.sdgNextQuarter}" />
+    <aura:attribute name="sdgThisQuarter" type="String" access="public" default="{!$Label.c.sdgThisQuarter}" />
+    <aura:attribute name="sdgLastQuarter" type="String" access="public" default="{!$Label.c.sdgLastQuarter}" />
+
+    <aura:attribute name="sdgNextYear" type="String" access="public" default="{!$Label.c.sdgNextYear}" />
+    <aura:attribute name="sdgThisYear" type="String" access="public" default="{!$Label.c.sdgThisYear}" />
+    <aura:attribute name="sdgLastYear" type="String" access="public" default="{!$Label.c.sdgLastYear}" />
+    <aura:attribute name="sdgTrue" type="String" access="public" default="{!$Label.c.sdgTrue}" />
+    <aura:attribute name="sdgFalse" type="String" access="public" default="{!$Label.c.sdgFalse}" />
+    <aura:attribute name="sdgGreaterThan" type="String" access="public" default="{!$Label.c.sdgGreaterThan}" />
+    <aura:attribute name="sdgLessThan" type="String" access="public" default="{!$Label.c.sdgLessThan}" />
+
+    <aura:registerEvent name="SDGFilterUpdate" type="c:sdgFilterUpdate" />
+    <aura:handler name="change" value="{!v.DateValue}" action="{!c.updateDate}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:if isTrue="{!v.SDGField!=null}">
+        <aura:if isTrue="{!v.SDGField.canFilter==true}">
+            <aura:if isTrue="{!v.canFilter==true}">
+
+                <div class="slds-grid slds-wrap">
+
+                    <aura:if isTrue="{!v.isString}">
+                        <div class="slds-col slds-col_padded">
+                            <lightning:select aura:id="StringOperatorField" value="{!v.FilterOperatorPreference}" label="{!v.SDGField.Label}" onchange="{!c.updateString}">
+                                <option text="=" label="{!v.sdgEquals}" />
+                                <option value="NOT=" label="{!v.sdgNotEquals}" />
+                                <option value="STARTS" label="{!v.sdgStarts}" selected="true" />
+                                <option value="ENDS" label="{!v.sdgEnds}" />
+                                <option value="CONTAINS" label="{!v.sdgContains}" />
+                                <option value="NOTCONTAINS" label="{!v.sdgNotContains}" />
+                            </lightning:select>
+
+                        </div>
+                        <div class="slds-col slds-col_padded">
+                            <label class="slds-form-element__label">&nbsp;</label>
+                            <ui:inputText change="{!c.updateString}" aura:id="StringField" value="{!v.FilterValuePreference}" />
+                        </div>
+                    </aura:if>
+
+                    <aura:if isTrue="{!v.isDate}">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-col_padded">
+                            <lightning:select aura:id="DateOperatorField" label="{!v.SDGField.Label}" value="{!v.FilterOperatorPreference}" onchange="{!c.updateDate}">
+                                <option text="=" label="{!v.sdgEquals}" />
+                                <option text="GT" label="{!v.sdgAfter}" />
+                                <option text="LT" label="{!v.sdgBefore}" />
+                                <option text="TOMORROW" label="{!v.sdgTomorrow}" />
+                                <option text="TODAY" label="{!v.sdgToday}" />
+                                <option text="YESTERDAY" label="{!v.sdgYesterday}" />
+                                <option text="NEXT_WEEK" label="{!v.sdgNextWeek}" />
+                                <option text="THIS_WEEK" label="{!v.sdgThisWeek}" />
+                                <option text="LAST_WEEK" label="{!v.sdgLastWeek}" />
+                                <option text="NEXT_MONTH" label="{!v.sdgNextMonth}" />
+                                <option text="LAST_MONTH" label="{!v.sdgLastMonth}" />
+
+                                <option text="THIS_MONTH" label="{!v.sdgThisMonth}" />
+                                <option text="NEXT_QUARTER" label="{!v.sdgNextQuarter}" />
+                                <option text="THIS_QUARTER" label="{!v.sdgThisQuarter}" />
+                                <option text="LAST_QUARTER" label="{!v.sdgLastQuarter}" />
+                                <option text="NEXT_YEAR" label="{!v.sdgNextYear}" />
+                                <option text="THIS_YEAR" label="{!v.sdgThisYear}" />
+                                <option text="LAST_YEAR" label="{!v.sdgLastYear}" />
+                            </lightning:select>
+
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-col_padded">
+                            <label class="slds-form-element__label">&nbsp;</label>
+                            <ui:inputDate aura:id="DateField" change="{!c.updateDate}" value="{!v.DateValue}" displayDatePicker="true" />
+                        </div>
+
+                    </aura:if>
+                    <aura:if isTrue="{!v.SDGField.FieldType=='BOOLEAN'}">
+                        <div class="slds-col slds-size_1-of-1 slds-col_padded">
+                            <lightning:select aura:id="CheckboxField" label="{!v.SDGField.Label}" value="{!v.FilterValuePreference}" onchange="{!c.updateCheckbox}">
+                                <option text="" label="" />
+                                <option text="true" label="{!v.sdgTrue}" />
+                                <option text="false" label="{!v.sdgFalse}" />
+                            </lightning:select>
+                        </div>
+                    </aura:if>
+
+                    <aura:if isTrue="{!v.SDGField.FieldType=='PICKLIST'}">
+                        <div class="slds-col slds-size_1-of-1 slds-col_padded">
+                            <lightning:select aura:id="PicklistField" label="{!v.SDGField.Label}" value="{!v.FilterValuePreference}" onchange="{!c.updatePicklist}">
+                                <aura:iteration items="{!v.SDGField.options}" var="picklistvalue">
+                                    <option text="{!picklistvalue.label}" label="{!picklistvalue.value}" />
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                    </aura:if>
+
+
+                    <aura:if isTrue="{!v.isNumber}">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-col_padded">
+
+                            <lightning:select aura:id="NumberOperatorField" label="{!v.SDGField.Label}" value="{!v.NumberOperator}" onchange="{!c.updateNumber}">
+                                <option text="=" label="{!v.sdgEquals}" />
+                                <option text="GT" label="{!v.sdgGreaterThan}" />
+                                <option text="LT" label="{!v.sdgLessThan}" />
+
+                            </lightning:select>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-col_padded">
+                            <label class="slds-form-element__label">&nbsp;</label>
+                            <ui:inputNumber aura:id="NumberField" value="{!v.FilterValuePreference}" change="{!c.updateNumber}" />
+                        </div>
+                    </aura:if>
+                </div>
+
+            </aura:if>
+        </aura:if>
+    </aura:if>
+</aura:component>

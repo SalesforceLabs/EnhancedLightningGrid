@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>sdgAfter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>After</shortDescription>
+        <value>is After</value>
+    </labels>
+    <labels>
+        <fullName>sdgAgo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sdgAgo</shortDescription>
+        <value>{0} ago</value>
+    </labels>
+    <labels>
+        <fullName>sdgBefore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Before</shortDescription>
+        <value>is before</value>
+    </labels>
+    <labels>
+        <fullName>sdgContains</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contains</shortDescription>
+        <value>Contains</value>
+    </labels>
+    <labels>
+        <fullName>sdgEnds</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Ends</shortDescription>
+        <value>Ends with</value>
+    </labels>
+    <labels>
+        <fullName>sdgEquals</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Equals</shortDescription>
+        <value>Equals</value>
+    </labels>
+    <labels>
+        <fullName>sdgFalse</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>False</shortDescription>
+        <value>False</value>
+    </labels>
+    <labels>
+        <fullName>sdgFiltered</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filtered</shortDescription>
+        <value>Filtered</value>
+    </labels>
+    <labels>
+        <fullName>sdgFilteredOf</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filtered Of</shortDescription>
+        <value>of</value>
+    </labels>
+    <labels>
+        <fullName>sdgGreaterThan</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Greater than</shortDescription>
+        <value>Greater than</value>
+    </labels>
+    <labels>
+        <fullName>sdgIn</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sdgIn</shortDescription>
+        <value>In {0}</value>
+    </labels>
+    <labels>
+        <fullName>sdgLastMonth</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last Month</shortDescription>
+        <value>Last month</value>
+    </labels>
+    <labels>
+        <fullName>sdgLastQuarter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last quarter</shortDescription>
+        <value>Last quarter</value>
+    </labels>
+    <labels>
+        <fullName>sdgLastWeek</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last Week</shortDescription>
+        <value>Last Week</value>
+    </labels>
+    <labels>
+        <fullName>sdgLastYear</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last Year</shortDescription>
+        <value>Last Year</value>
+    </labels>
+    <labels>
+        <fullName>sdgLessThan</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Less than</shortDescription>
+        <value>Less than</value>
+    </labels>
+    <labels>
+        <fullName>sdgNextMonth</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next month</shortDescription>
+        <value>Next month</value>
+    </labels>
+    <labels>
+        <fullName>sdgNextQuarter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next Quarter</shortDescription>
+        <value>Next quarter</value>
+    </labels>
+    <labels>
+        <fullName>sdgNextWeek</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next week</shortDescription>
+        <value>Next Week</value>
+    </labels>
+    <labels>
+        <fullName>sdgNextYear</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next year</shortDescription>
+        <value>Next year</value>
+    </labels>
+    <labels>
+        <fullName>sdgNoData</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No data</shortDescription>
+        <value>No data returned</value>
+    </labels>
+    <labels>
+        <fullName>sdgNotContains</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Contains</shortDescription>
+        <value>Does not contain</value>
+    </labels>
+    <labels>
+        <fullName>sdgNotEquals</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Equals</shortDescription>
+        <value>Not Equals</value>
+    </labels>
+    <labels>
+        <fullName>sdgPage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Page</shortDescription>
+        <value>Page</value>
+    </labels>
+    <labels>
+        <fullName>sdgPage_Size</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Page Size</shortDescription>
+        <value>Page Size</value>
+    </labels>
+    <labels>
+        <fullName>sdgStarts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Starts</shortDescription>
+        <value>Starts with</value>
+    </labels>
+    <labels>
+        <fullName>sdgThisMonth</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>This Month</shortDescription>
+        <value>This month</value>
+    </labels>
+    <labels>
+        <fullName>sdgThisQuarter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>This quarter</shortDescription>
+        <value>This quarter</value>
+    </labels>
+    <labels>
+        <fullName>sdgThisWeek</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>This Week</shortDescription>
+        <value>This Week</value>
+    </labels>
+    <labels>
+        <fullName>sdgThisYear</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>This Year</shortDescription>
+        <value>This year</value>
+    </labels>
+    <labels>
+        <fullName>sdgToday</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Today</shortDescription>
+        <value>Today</value>
+    </labels>
+    <labels>
+        <fullName>sdgTomorrow</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Tomorrow</shortDescription>
+        <value>Tomorrow</value>
+    </labels>
+    <labels>
+        <fullName>sdgTrue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>True</shortDescription>
+        <value>True</value>
+    </labels>
+    <labels>
+        <fullName>sdgView_All</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View All</shortDescription>
+        <value>View All</value>
+    </labels>
+    <labels>
+        <fullName>sdgYesterday</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Yesterday</shortDescription>
+        <value>Yesterday</value>
+    </labels>
+</CustomLabels>

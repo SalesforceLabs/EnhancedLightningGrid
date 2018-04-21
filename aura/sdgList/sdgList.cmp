@@ -1,0 +1,24 @@
+<!-- Copyright (c) 2018, salesforce.com, inc. 
+    * All rights reserved. 
+    * SPDX-License-Identifier: BSD-3-Clause 
+    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+-->
+<aura:component>
+    <aura:attribute name="recordId" type="String" access="global" />
+    <aura:attribute name="SDGConfiguration" type="String" access="global" />
+    <aura:attribute name="SVGName" type="String" access="global" default="standard:account" />
+    <aura:attribute name="Title" type="String" access="global" />
+    <aura:attribute name="UseCache" type="Boolean" default="true" access="global" />
+    <aura:attribute name="HideOnError" type="Boolean" default="true" access="global" />
+    <aura:attribute name="RelationshipName" type="String" access="global" />
+    <aura:attribute name="FieldSetName" type="String" access="global" />
+    <aura:attribute name="SDGTag" type="string" access="global" />
+
+    <aura:attribute name="ShowDebug" type="Boolean" access="global" />
+    <aura:attribute name="PreventResponsiveness" type="Boolean" default="false" access="global" />
+    <div class="slds-card fullheight">
+        <c:sdg aura:id="cmpList" SDGConfiguration="{!v.SDGConfiguration}" Title="{!v.Title}" recordId="{!v.recordId}" PageId="1"
+            RelationshipName="{!v.RelationshipName}" DefaultPageSize="50" UseCache="{v.UseCache}" FieldSetName="{!v.FieldSetName}"
+            HideOnError="{!v.HideOnError}" ShowDebug="{!v.ShowDebug}" SVGName="{!v.SVGName}" />
+    </div>
+</aura:component>

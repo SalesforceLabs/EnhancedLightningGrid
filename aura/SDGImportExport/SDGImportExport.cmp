@@ -1,0 +1,37 @@
+<!-- Copyright (c) 2018, salesforce.com, inc. 
+    * All rights reserved. 
+    * SPDX-License-Identifier: BSD-3-Clause 
+    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+-->
+<aura:component implements="force:lightningQuickAction,force:hasRecordId" access="global" controller="sdgImportExport">
+    <aura:attribute name="Error" type="String" />
+    <aura:attribute name="payload" type="String" />
+
+    <aura:attribute name="importpayload" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:if isTrue="{!v.Error!=null}">
+        <ui:message title="Error" severity="error" closable="true">
+            {!v.Error}
+        </ui:message>
+    </aura:if>
+    <lightning:tabset>
+        <lightning:tab label="Export">
+            <p>Copy this text and paste into the import wizard in a new org.</p>
+            <lightning:textarea class="bigtextarea" aura:id="textareaPayload" label="" value="{!v.payload}" />
+
+        </lightning:tab>
+        <lightning:tab label="Import">
+            <p>Paste the text you copied from your other org, then click 'Import'.</p>
+
+            <lightning:textarea class="bigtextarea" aura:id="textareaPayload" label="" value="{!v.importpayload}" />
+
+            <div class="slds-clearfix">
+                <div class="slds-float_right">
+                    <lightning:button label="Import" aura:id="btnImport" onclick="{!c.import}"></lightning:button>
+                </div>
+            </div>
+        </lightning:tab>
+    </lightning:tabset>
+
+
+</aura:component>

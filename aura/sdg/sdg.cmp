@@ -1,0 +1,349 @@
+<!-- Copyright (c) 2018, salesforce.com, inc. 
+    * All rights reserved. 
+    * SPDX-License-Identifier: BSD-3-Clause 
+    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+-->
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:hasRecordId,force:appHostable"
+    controller="sdgController" access="global" extends="c:sdgBase">
+
+    <aura:attribute name="recordId" type="String" access="global" />
+
+    <aura:attribute name="SDGFields" type="List" access="global" />
+    <aura:attribute name="SDG" type="object" access="global" />
+    <aura:attribute name="SDGFilters" type="List" access="global" />
+    <aura:attribute name="SDGFiltersDefinition" type="List" access="global" />
+    <aura:attribute name="SDGActions" type="List" access="global" />
+    <aura:attribute name="hasListMenu" type="Boolean" default="false" access="private" />
+    <aura:attribute name="hasRowMenu" type="Boolean" default="false" access="private" />
+    <aura:attribute name="hasRowActions" type="Boolean" default="false" access="private" />
+    <aura:attribute name="hasFilters" type="Boolean" default="false" access="private" />
+
+    <aura:attribute name="FullQueryCount" type="Integer" access="global" />
+    <aura:attribute name="ShowFilters" type="Boolean" default="false" access="global" />
+    <aura:attribute name="isPaging" type="Boolean" access="global" />
+    <aura:attribute name="isFiltered" type="Boolean" />
+    <aura:attribute name="PageID" type="String" access="global" />
+    <aura:attribute name="SortColumn" type="String" default="" access="global" />
+    <aura:attribute name="SortOrder" type="String" default="" access="global" />
+    <aura:attribute name="ShowSDGError" type="Boolean" default="false" access="global" />
+
+    <aura:attribute name="processeddata" type="Object" access="global" />
+    <aura:attribute name="ErrorMessage" type="String" access="global" />
+    <aura:attribute name="TitleName" type="String" access="private" />
+    <aura:attribute name="Pages" type="List" access="global" default="" />
+    <aura:attribute name="reloadseed" type="String" access="global" default="" />
+    <aura:attribute name="ShowComponent" type="Boolean" default="true" />
+    <aura:attribute name="HideOnError" type="Boolean" default="true" access="global" />
+    <aura:attribute name="MultiSelectMode" type="Boolean" default="false" access="global" />
+    <aura:attribute name="CheckedRowIDs" type="List" default="[]" />
+    <aura:attribute name="internalEvent" type="String" default="Internal" />
+    <aura:attribute name="ToggleFilterStyle" type="String" default="" />
+    <aura:attribute name="isLoaded" type="Boolean" default="false" access="global" />
+    <aura:attribute name="ShowDebug" type="Boolean" default="false" access="global" />
+
+    <aura:attribute name="hasSummary" type="Boolean" default="false" />
+    <aura:attribute name="summarydata" type="List" access="global" />
+
+    <!--Labels-->
+    <aura:attribute name="sdgAgo" type="String" access="public" default="{!$Label.c.sdgAgo}" />
+    <aura:attribute name="sdgIn" type="String" access="public" default="{!$Label.c.sdgIn}" />
+    <aura:attribute name="sdgFiltered" type="String" access="public" default="{!$Label.c.sdgFiltered}" />
+    <aura:attribute name="sdgFilteredOf" type="String" access="public" default="{!$Label.c.sdgFilteredOf}" />
+    <aura:attribute name="sdgNoData" type="String" access="public" default="{!$Label.c.sdgNoData}" />
+    <aura:attribute name="sdgPage" type="String" access="public" default="{!$Label.c.sdgPage}" />
+    <aura:attribute name="sdgPage_Size" type="String" access="public" default="{!$Label.c.sdgPage_Size}" />
+
+    <!-- Design Attributes-->
+    <aura:attribute name="SDGConfiguration" type="String" access="global" />
+    <aura:attribute name="SVGName" type="String" access="global" default="standard:account" />
+    <aura:attribute name="Title" type="String" access="global" />
+    <aura:attribute name="UseCache" type="Boolean" default="true" access="global" />
+    <aura:attribute name="UseBackground" type="Boolean" default="false" access="global" />
+    <aura:attribute name="RelationshipName" type="String" access="global" />
+    <aura:attribute name="FieldSetName" type="String" access="global" />
+    <aura:attribute name="SDGTag" type="string" access="global" />
+    <aura:attribute name="DefaultPageSize" type="String" access="global" />
+    <aura:attribute name="PagerSizeValue" default="{!v.DefaultPageSize}" type="String" access="global" />
+
+    <aura:attribute name="PreventResponsiveness" type="Boolean" default="false" access="global" />
+
+    <aura:attribute name="FilterButtonClass" type="String" default="" />
+    <aura:attribute name="namespace" type="string" default="sortablegrid" />
+
+    <aura:attribute name="width" type="String" />
+    <aura:attribute name="TargetSize" type="String" />
+
+    <aura:attribute name="filtersize" type="String" />
+
+    <lightning:flexipageRegionInfo width="{!v.width}" />
+
+    <!-- Events -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="SDGFilterUpdate" event="c:sdgFilterUpdate" action="{!c.filterUpdated}" />
+    <aura:handler name="SDGSortableColumnSort" event="c:sdgSortableColumnSort" action="{!c.sort}" />
+    <aura:handler event="c:evtRefreshSDG" action="{!c.reload}" />
+    <aura:handler event="force:refreshView" action="{!c.reload}" />
+
+    <c:ObjectHelper aura:id="ObjectHelper" />
+
+    <style>
+        .SDGhidden {
+            display: none;
+
+            visibility: hidden;
+        }
+    </style>
+
+    <aura:if isTrue="{!v.ShowComponent}">
+        <div class="sdgborder">
+            <lightning:card iconName="{!v.SVGName}">
+                <aura:set attribute="title">
+                    <a class="slds-card__header-link baseCard__header-title-container" onclick="{!c.ShowAll}">{!v.TitleName}</a>
+
+                </aura:set>
+
+
+                <aura:set attribute="actions">
+
+                    <lightning:buttonGroup>
+
+
+                        <aura:renderIf isTrue="{!v.TargetSize=='SMALL'}">
+                            <lightning:buttonMenu iconName="utility:sort" onselect="{! c.handleSort}" menuAlignment="right">
+
+                                <aura:iteration items="{!v.SDG.SDGFields}" var="field">
+                                    <aura:renderIf isTrue="{!field.canSort}">
+                                        <lightning:menuitem value="{!field.ID + ':A'}" checked="{!v.SortColumn + ':' + v.SortOrder == field.ID + ':A'}" label="{!field.Label}"
+                                            iconName="utility:arrowup" />
+                                        <lightning:menuitem value="{!field.ID + ':D'}" checked="{!v.SortColumn + ':' + v.SortOrder == field.ID + ':D'}" label="{!field.Label}"
+                                            iconName="utility:arrowdown" />
+                                    </aura:renderIf>
+
+                                </aura:iteration>
+
+                            </lightning:buttonMenu>
+
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!v.hasFilters}">
+                            <lightning:buttonIcon iconName="utility:filterList" variant="border-filled" class="{!v.ToggleFilterStyle}" onclick="{! c.ToggleFilters }"
+                                aura:id="FilterToggleButton" alternativeText="Toggle Filters." />
+                        </aura:renderIf>
+                        <lightning:buttonIcon iconName="utility:refresh" variant="border-filled" onclick="{! c.reload }" alternativeText="Reload"
+                        />
+                        <aura:iteration items="{!v.SDGActions}" var="action">
+                            <aura:if isTrue="{!action.Type=='List Multi'}">
+                                <lightning:button disabled="{!v.CheckedRowIDs.length==0}" label="{!action.Label}" iconName="{!action.Icon}" value="{!action.Id}"
+                                    onclick="{! c.RaiseListMultiEventButton }" />
+                            </aura:if>
+                        </aura:iteration>
+
+                        <aura:iteration items="{!v.SDGActions}" var="action">
+                            <aura:if isTrue="{!action.Type=='List Button'}">
+                                <lightning:button disabled="{!v.CheckedRowIDs.length>0}" label="{!action.Label}" iconName="{!action.Icon}" value="{!action.Id}"
+                                    onclick="{! c.RaiseListEventButton }" />
+                            </aura:if>
+                        </aura:iteration>
+
+                        <aura:if isTrue="{!v.hasListMenu}">
+
+                            <lightning:buttonMenu class="slds-button_last " menuAlignment="right" alternativeText="More options" onselect="{! c.RaiseListEventMenu }"
+                                variant="border-filled" iconSize="medium">
+                                <aura:iteration items="{!v.SDGActions}" var="action">
+                                    <aura:if isTrue="{!action.Type=='List'}">
+                                        <lightning:menuItem disabled="{!v.CheckedRowIDs.length>0}" label="{!action.Label}" iconName="{!action.Icon}" value="{!action.Id}"
+                                        />
+                                    </aura:if>
+                                </aura:iteration>
+
+                            </lightning:buttonMenu>
+                        </aura:if>
+                    </lightning:buttonGroup>
+                </aura:set>
+                <aura:renderIf isTrue="{!v.ShowFilters}">
+                    <div class="slds-p-bottom_small">
+                        <lightning:layout multipleRows="true">
+                            <aura:iteration items="{!v.SDGFiltersDefinition}" var="field">
+                                <lightning:layoutItem flexibility="auto" size="{!v.filtersize}">
+                                    <div class="{! 'filter ' + v.TargetSize}">
+                                        <c:sdgFilter aura:id="cmpFilter" SDGField="{!field}">
+
+                                        </c:sdgFilter>
+                                    </div>
+                                </lightning:layoutItem>
+                            </aura:iteration>
+
+                        </lightning:layout>
+                    </div>
+                </aura:renderIf>
+
+                <aura:renderIf isTrue="{!!v.isLoaded}">
+                    <div class="placeholder">
+                        <div class="inner">
+                            <div class="text-body">
+                                <div class="text text-medium"></div>
+                                <div class="text text-long"></div>
+                            </div>
+                        </div>
+                    </div>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.isLoaded}">
+
+                    <div aura:id="datapanel">
+                        <div>
+                            <div class="sdgdatatablewrapper" aura:id="sdgdatatablewrapper">
+                                <table aura:id="resulttable" class="{! 'slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer ' + (v.TargetSize=='SMALL'?' narrow':'')}">
+                                    <thead>
+                                        <tr class="slds-text-title_caps">
+                                            <aura:if isTrue="{!v.MultiSelectMode}">
+                                                <th class="slds-text-align_right" scope="col" style="width: 3.25rem;">
+                                                    <lightning:input type="checkbox" label="" name="" aura:id="checkall" onchange="{!c.CheckAll}" />
+                                                </th>
+                                            </aura:if>
+                                            <aura:iteration items="{!v.SDG.SDGFields}" var="field">
+                                                <c:sdgSortableColumn SDGField="{!field}" CurrentSortedColumn="{!v.SortColumn}" CurrentSortedOrder="{!v.SortOrder}"></c:sdgSortableColumn>
+                                            </aura:iteration>
+
+                                            <aura:if isTrue="{!v.hasRowActions}">
+                                                <th>&nbsp;</th>
+                                            </aura:if>
+                                        </tr>
+                                    </thead>
+
+                                    <aura:if isTrue="{!v.FullQueryCount==0}">
+                                        <tbody>
+                                            <tr class="slds-hint-parent">
+                                                <td colspan="{!v.SDG.SDGFields.length+1}">
+                                                    <span class="slds-truncate">{!v.sdgNoData}</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </aura:if>
+                                    <aura:if isTrue="{!v.FullQueryCount>0}">
+                                        <tbody>
+                                            <aura:iteration items="{!v.processeddata}" var="row">
+                                                <tr class="slds-hint-parent">
+                                                    <aura:if isTrue="{!v.TargetSize=='SMALL'}">
+                                                        <td>
+                                                            <div class="slds-clearfix">
+                                                                <div class="slds-float_left">
+                                                                    <lightning:icon size="small" iconName="{!v.SVGName}" />
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!v.MultiSelectMode}">
+
+                                                        <td class="slds-text-align_right" scope="col" style="width: 3.25rem;">
+                                                            <lightning:input type="checkbox" value="{#row.rowID}" name="" aura:id="checkrow" onchange="{!c.checkboxchange}" />
+
+                                                        </td>
+                                                    </aura:if>
+
+                                                    <aura:iteration items="{!row.data}" var="renderfield" indexVar="index">
+
+                                                        <c:sdgDatagridCell renderfield="{!renderfield}" />
+
+
+                                                    </aura:iteration>
+
+                                                    <aura:if isTrue="{!v.hasRowActions}">
+                                                        <td class="actions" scope="col">
+
+                                                            <lightning:buttonGroup>
+
+                                                                <aura:iteration items="{!v.SDGActions}" var="action">
+                                                                    <aura:if isTrue="{!action.Type=='Row Button'}">
+                                                                        <lightning:button label="{!action.Label}" iconName="{!action.Icon}" class="rowbutton" value="{#action.Id + ',' + row.rowID}"
+                                                                            onclick="{! c.RaiseRowEventButton }" />
+                                                                    </aura:if>
+                                                                </aura:iteration>
+
+
+
+                                                                <aura:if isTrue="{!v.hasRowMenu}">
+
+                                                                    <lightning:buttonMenu class="aamenurelative slds-button_last rowbutton" visible="false" menuAlignment="right" alternativeText="More options"
+                                                                        onselect="{! c.RaiseRowEventMenu }" variant="border-filled"
+                                                                        value="{#row.rowID}">
+                                                                        <aura:iteration items="{!v.SDGActions}" var="action">
+                                                                            <aura:if isTrue="{!action.Type=='Row'}">
+                                                                                <lightning:menuItem label="{!action.Label}" iconName="{!action.Icon}" value="{#action.Id + ',' + row.rowID}" />
+                                                                            </aura:if>
+                                                                        </aura:iteration>
+
+
+                                                                    </lightning:buttonMenu>
+                                                                </aura:if>
+                                                            </lightning:buttonGroup>
+
+                                                        </td>
+                                                    </aura:if>
+
+                                                </tr>
+                                            </aura:iteration>
+                                        </tbody>
+                                        <aura:if isTrue="{!v.hasSummary}">
+                                            <tfoot>
+
+                                                <tr class="slds-hint-parent">
+
+                                                    <aura:if isTrue="{!v.MultiSelectMode}">
+                                                        <td>&nbsp;</td>
+
+                                                    </aura:if>
+
+                                                    <aura:iteration items="{!v.summarydata}" var="summaryfield" indexVar="index">
+                                                        <c:sdgDatagridCell renderfield="{!summaryfield}" />
+                                                    </aura:iteration>
+                                                </tr>
+
+
+
+                                            </tfoot>
+                                        </aura:if>
+                                    </aura:if>
+
+                                </table>
+                            </div>
+                        </div>
+                        <aura:renderIf isTrue="{!v.FullQueryCount>10}">
+                            <div class="slds-form_inline slds-p-around_xx-small">
+                                <div class=" slds-form-element">
+
+                                    <lightning:select aura:id="PagerPage" name="PagerPage" label="{!v.sdgPage}" onchange="{!c.paging}">
+                                        <aura:iteration items="{!v.Pages}" var="opt">
+                                            <option value="{!opt.value}" label="{!opt.label}" />
+                                        </aura:iteration>
+                                    </lightning:select>
+
+                                </div>
+                                <div class="slds-form-element">
+                                    <lightning:select aura:id="PagerSize" name="PagerSize" label="{!v.sdgPage_Size}" value="{!v.PagerSizeValue}" onchange="{!c.reload}">
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </lightning:select>
+                                </div>
+
+                            </div>
+                        </aura:renderIf>
+                    </div>
+                </aura:renderIf>
+            </lightning:card>
+        </div>
+    </aura:if>
+
+    <aura:if isTrue="{!v.ShowDebug }">
+        <div class="slds-box slds-theme_shade slds-scrollable debugsize " aura:id="debuglogpanel">
+            <h1 class="slds-page-header__title">Debug Log
+                <lightning:buttonIcon iconName="utility:expand" variant="bare" class="slds-float_right" onclick="{! c.ToggleDebug }" alternativeText="Toggle size"
+                />
+            </h1>
+            <aura:iteration items="{!v.DebugLog}" var="item">
+                <p>{!item}</p>
+            </aura:iteration>
+        </div>
+    </aura:if>
+
+</aura:component>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
-        <application>Sortable_Data_Grids</application>
+        <application>Sortable_Data_Grids_Lightning</application>
         <visible>true</visible>
     </applicationVisibilities>
     <fieldPermissions>
@@ -65,13 +65,13 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>SDG__c.DisableSharing__c</field>
+        <editable>true</editable>
+        <field>SDG__c.Default_Sort__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>SDG__c.Default_Sort__c</field>
+        <editable>false</editable>
+        <field>SDG__c.DisableSharing__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

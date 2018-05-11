@@ -30,7 +30,7 @@ global static string BuildFilterClause(String ColumnName, String FieldType, Stri
     if (string.isblank(filteroperator))
             filteroperator = '=';
 
-            if (FieldType ==String.valueof(Schema.DisplayType.STRING))
+            if (FieldType ==String.valueof(Schema.DisplayType.STRING) || FieldType ==String.valueof(Schema.DisplayType.EMAIL))
             {
                 if (String.isNotBlank(filtervalue.trim()))
                 {

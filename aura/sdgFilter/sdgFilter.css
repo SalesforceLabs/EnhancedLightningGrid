@@ -1,3 +1,48 @@
-.THIS .filter_label {
-    text-align: left;
+.THIS .slds-form-element__label {
+    display: block;
+}
+
+.THIS .slds-form-element__control, .THIS .slds-form-element, .THIS .slds-select_container, .THIS div.uiInput {
+    display: inline-block;
+}
+
+.THIS .uiInputText.input, .THIS .uiInputNumber.input, .THIS .uiInputDate .input {
+    border-radius: 0 .25rem .25em 0;
+}
+
+.THIS div.uiInputDate {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+.THIS .sdg-combo-filter .slds-select {
+    border-radius: .25rem 0 0 .25em;
+}
+
+.THIS .slds-select {
+    height: 36px;
+}
+
+.THIS .sdg-combo-filter {
+    position: relative;
+    padding-top: 1.7em;
+}
+
+.THIS .sdg-combo-filter label {
+    position: absolute;
+    top: -1.7em;
+}
+
+.THIS .sdg-filter-input-text {
+    min-width: 200px;
+}
+
+.THIS .sdg-filter-input-number {
+    min-width: 176px;
+}
+
+.THIS .uiInput--datetime .datePicker-openIcon {
+    bottom: 11px;
 }

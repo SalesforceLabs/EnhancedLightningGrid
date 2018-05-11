@@ -60,8 +60,8 @@
                 <div class="slds-grid slds-wrap">
 
                     <aura:if isTrue="{!v.isString}">
-                        <div class="slds-col slds-col_padded">
-                            <lightning:select aura:id="StringOperatorField" value="{!v.FilterOperatorPreference}" label="{!v.SDGField.Label}" onchange="{!c.updateString}">
+                        <div class="slds-col slds-col_padded sdg-combo-filter slds-grid">
+                            <lightning:select aura:id="StringOperatorField" label="{!v.SDGField.Label}" value="{!v.FilterOperatorPreference}" onchange="{!c.updateString}">
                                 <option text="=" label="{!v.sdgEquals}" />
                                 <option value="NOT=" label="{!v.sdgNotEquals}" />
                                 <option value="STARTS" label="{!v.sdgStarts}" selected="true" />
@@ -70,15 +70,15 @@
                                 <option value="NOTCONTAINS" label="{!v.sdgNotContains}" />
                             </lightning:select>
 
-                        </div>
-                        <div class="slds-col slds-col_padded">
-                            <label class="slds-form-element__label">&nbsp;</label>
-                            <ui:inputText change="{!c.updateString}" aura:id="StringField" value="{!v.FilterValuePreference}" />
+                            <div class="slds-col slds-grow sdg-filter-input-text">
+                                <label class="slds-hide">&nbsp;</label>
+                                <ui:inputText change="{!c.updateString}" aura:id="StringField" value="{!v.FilterValuePreference}" />
+                            </div>
                         </div>
                     </aura:if>
 
                     <aura:if isTrue="{!v.isDate}">
-                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-col_padded">
+                        <div class="slds-col slds-col_padded sdg-combo-filter slds-grid">
                             <lightning:select aura:id="DateOperatorField" label="{!v.SDGField.Label}" value="{!v.FilterOperatorPreference}" onchange="{!c.updateDate}">
                                 <option text="=" label="{!v.sdgEquals}" />
                                 <option text="GT" label="{!v.sdgAfter}" />
@@ -101,9 +101,7 @@
                                 <option text="LAST_YEAR" label="{!v.sdgLastYear}" />
                             </lightning:select>
 
-                        </div>
-                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-col_padded">
-                            <label class="slds-form-element__label">&nbsp;</label>
+                            <label class="slds-hide">&nbsp;</label>
                             <ui:inputDate aura:id="DateField" change="{!c.updateDate}" value="{!v.DateValue}" displayDatePicker="true" />
                         </div>
 
@@ -130,7 +128,7 @@
 
 
                     <aura:if isTrue="{!v.isNumber}">
-                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-col_padded">
+                        <div class="slds-col slds-col_padded sdg-combo-filter slds-grid">
 
                             <lightning:select aura:id="NumberOperatorField" label="{!v.SDGField.Label}" value="{!v.NumberOperator}" onchange="{!c.updateNumber}">
                                 <option text="=" label="{!v.sdgEquals}" />
@@ -138,10 +136,11 @@
                                 <option text="LT" label="{!v.sdgLessThan}" />
 
                             </lightning:select>
-                        </div>
-                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-col_padded">
-                            <label class="slds-form-element__label">&nbsp;</label>
-                            <ui:inputNumber aura:id="NumberField" value="{!v.FilterValuePreference}" change="{!c.updateNumber}" />
+
+                            <div class="slds-col slds-grow sdg-filter-input-number">
+                                <label class="slds-hide">&nbsp;</label>
+                                <ui:inputNumber aura:id="NumberField" value="{!v.FilterValuePreference}" change="{!c.updateNumber}" />
+                            </div>
                         </div>
                     </aura:if>
                 </div>

@@ -172,7 +172,7 @@ font-size:0.9em;
 
 }
 .THIS .filter{
-width:100%;
+    display: inline-block;
 }
 
 .THIS .slds-table.narrow tr {

@@ -161,18 +161,14 @@
                 </aura:set>
                 <aura:renderIf isTrue="{!v.ShowFilters}">
                     <div class="slds-p-bottom_small">
-                        <lightning:layout multipleRows="true">
                             <aura:iteration items="{!v.SDGFiltersDefinition}" var="field">
-                                <lightning:layoutItem flexibility="auto" size="{!v.filtersize}">
                                     <div class="{! 'filter ' + v.TargetSize}">
                                         <c:sdgFilter aura:id="cmpFilter" SDGField="{!field}">
 
                                         </c:sdgFilter>
                                     </div>
-                                </lightning:layoutItem>
                             </aura:iteration>
 
-                        </lightning:layout>
                     </div>
                 </aura:renderIf>
 

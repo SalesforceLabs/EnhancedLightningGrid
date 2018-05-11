@@ -83,7 +83,7 @@
 
             for (var i = 0; i < fieldlistlength; i++) {
               var field = fields[i];
-              if (field.canFilter) hasFilters === true;
+              if (field.canFilter) hasFilters = true;
               if (
                 field.FieldStyle &&
                 field.FieldStyle.startsWith("Summarize")

@@ -46,8 +46,8 @@
         <fullName>sdgFalse</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>False</shortDescription>
-        <value>False</value>
+        <shortDescription>No</shortDescription>
+        <value>No</value>
     </labels>
     <labels>
         <fullName>sdgFiltered</fullName>
@@ -228,8 +228,8 @@
         <fullName>sdgTrue</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>True</shortDescription>
-        <value>True</value>
+        <shortDescription>Yes</shortDescription>
+        <value>Yes</value>
     </labels>
     <labels>
         <fullName>sdgView_All</fullName>

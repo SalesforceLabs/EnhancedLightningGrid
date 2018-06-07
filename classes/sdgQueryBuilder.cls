@@ -15,9 +15,9 @@ global static string BuildSortClause (String sortColumn, String sortOrder){
     if (String.isNotBlank(sortColumn))
     {
         if (sortOrder == 'A')
-            sSortClause = ' ORDER BY name ASC NULLS FIRST';
+            sSortClause = ' ORDER BY ' + sortColumn + ' ASC NULLS FIRST';
         else
-            sSortClause = ' ORDER BY name DESC NULLS LAST';
+            sSortClause = ' ORDER BY ' + sortColumn + ' DESC NULLS LAST';
     }
     return sSortClause;
 }

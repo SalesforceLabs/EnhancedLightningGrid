@@ -62,12 +62,12 @@
                     <aura:if isTrue="{!v.isString}">
                         <div class="slds-col slds-col_padded">
                             <lightning:select aura:id="StringOperatorField" value="{!v.FilterOperatorPreference}" label="{!v.SDGField.Label}" onchange="{!c.updateString}">
-                                <option text="=" label="{!v.sdgEquals}" />
-                                <option value="NOT=" label="{!v.sdgNotEquals}" />
-                                <option value="STARTS" label="{!v.sdgStarts}" selected="true" />
-                                <option value="ENDS" label="{!v.sdgEnds}" />
-                                <option value="CONTAINS" label="{!v.sdgContains}" />
-                                <option value="NOTCONTAINS" label="{!v.sdgNotContains}" />
+                                <option value="=" text="{!v.sdgEquals}" label="{!v.sdgEquals}" />
+                                <option value="NOT=" text="{!v.sdgNotEquals}" label="{!v.sdgNotEquals}" />
+                                <option value="STARTS" text="{!v.sdgStarts}" label="{!v.sdgStarts}" selected="true" />
+                                <option value="ENDS" text="{!v.sdgEnds}" label="{!v.sdgEnds}" />
+                                <option value="CONTAINS" text="{!v.sdgContains}" label="{!v.sdgContains}" />
+                                <option value="NOTCONTAINS" text="{!v.sdgNotContains}" label="{!v.sdgNotContains}" />
                             </lightning:select>
 
                         </div>
@@ -80,25 +80,25 @@
                     <aura:if isTrue="{!v.isDate}">
                         <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-col_padded">
                             <lightning:select aura:id="DateOperatorField" label="{!v.SDGField.Label}" value="{!v.FilterOperatorPreference}" onchange="{!c.updateDate}">
-                                <option text="=" label="{!v.sdgEquals}" />
-                                <option text="GT" label="{!v.sdgAfter}" />
-                                <option text="LT" label="{!v.sdgBefore}" />
-                                <option text="TOMORROW" label="{!v.sdgTomorrow}" />
-                                <option text="TODAY" label="{!v.sdgToday}" />
-                                <option text="YESTERDAY" label="{!v.sdgYesterday}" />
-                                <option text="NEXT_WEEK" label="{!v.sdgNextWeek}" />
-                                <option text="THIS_WEEK" label="{!v.sdgThisWeek}" />
-                                <option text="LAST_WEEK" label="{!v.sdgLastWeek}" />
-                                <option text="NEXT_MONTH" label="{!v.sdgNextMonth}" />
-                                <option text="LAST_MONTH" label="{!v.sdgLastMonth}" />
+                                <option value="=" text="{!v.sdgEquals}" label="{!v.sdgEquals}" />
+                                <option value="GT" text="{!v.sdgAfter}" label="{!v.sdgAfter}" />
+                                <option value="LT" text="{!v.sdgBefore}" label="{!v.sdgBefore}" />
+                                <option value="TOMORROW" text="{!v.sdgTomorrow}" label="{!v.sdgTomorrow}" />
+                                <option value="TODAY" text="{!v.sdgToday}" label="{!v.sdgToday}" />
+                                <option value="YESTERDAY" text="{!v.sdgYesterday}" label="{!v.sdgYesterday}" />
+                                <option value="NEXT_WEEK" text="{!v.sdgNextWeek}" label="{!v.sdgNextWeek}" />
+                                <option value="THIS_WEEK" text="{!v.sdgThisWeek}" label="{!v.sdgThisWeek}" />
+                                <option value="LAST_WEEK" text="{!v.sdgLastWeek}" label="{!v.sdgLastWeek}" />
+                                <option value="NEXT_MONTH" text="{!v.sdgNextMonth}" label="{!v.sdgNextMonth}" />
+                                <option value="LAST_MONTH" text="{!v.sdgLastMonth}" label="{!v.sdgLastMonth}" />
 
-                                <option text="THIS_MONTH" label="{!v.sdgThisMonth}" />
-                                <option text="NEXT_QUARTER" label="{!v.sdgNextQuarter}" />
-                                <option text="THIS_QUARTER" label="{!v.sdgThisQuarter}" />
-                                <option text="LAST_QUARTER" label="{!v.sdgLastQuarter}" />
-                                <option text="NEXT_YEAR" label="{!v.sdgNextYear}" />
-                                <option text="THIS_YEAR" label="{!v.sdgThisYear}" />
-                                <option text="LAST_YEAR" label="{!v.sdgLastYear}" />
+                                <option value="THIS_MONTH" text="{!v.sdgThisMonth}" label="{!v.sdgThisMonth}" />
+                                <option value="NEXT_QUARTER" text="{!v.sdgNextQuarter}" label="{!v.sdgNextQuarter}" />
+                                <option value="THIS_QUARTER" text="{!v.sdgThisQuarter}" label="{!v.sdgThisQuarter}" />
+                                <option value="LAST_QUARTER" text="{!v.sdgLastQuarter}" label="{!v.sdgLastQuarter}" />
+                                <option value="NEXT_YEAR" text="{!v.sdgNextYear}" label="{!v.sdgNextYear}" />
+                                <option value="THIS_YEAR" text="{!v.sdgThisYear}" label="{!v.sdgThisYear}" />
+                                <option value="LAST_YEAR" text="{!v.sdgLastYear}" label="{!v.sdgLastYear}" />
                             </lightning:select>
 
                         </div>
@@ -111,9 +111,9 @@
                     <aura:if isTrue="{!v.SDGField.FieldType=='BOOLEAN'}">
                         <div class="slds-col slds-size_1-of-1 slds-col_padded">
                             <lightning:select aura:id="CheckboxField" label="{!v.SDGField.Label}" value="{!v.FilterValuePreference}" onchange="{!c.updateCheckbox}">
-                                <option text="" label="" />
-                                <option text="true" label="{!v.sdgTrue}" />
-                                <option text="false" label="{!v.sdgFalse}" />
+                                <option value="" text="" label="" />
+                                <option value="true" text="{!v.sdgTrue}" label="{!v.sdgTrue}" />
+                                <option value="false" text="{!v.sdgFalse}" label="{!v.sdgFalse}" />
                             </lightning:select>
                         </div>
                     </aura:if>
@@ -133,9 +133,9 @@
                         <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-col_padded">
 
                             <lightning:select aura:id="NumberOperatorField" label="{!v.SDGField.Label}" value="{!v.NumberOperator}" onchange="{!c.updateNumber}">
-                                <option text="=" label="{!v.sdgEquals}" />
-                                <option text="GT" label="{!v.sdgGreaterThan}" />
-                                <option text="LT" label="{!v.sdgLessThan}" />
+                                <option value="=" text="{!v.sdgEquals}" label="{!v.sdgEquals}" />
+                                <option value="GT" text="{!v.sdgGreaterThan}" label="{!v.sdgGreaterThan}" />
+                                <option value="LT" text="{!v.sdgLessThan}" label="{!v.sdgLessThan}" />
 
                             </lightning:select>
                         </div>

@@ -312,7 +312,7 @@
 
                                     <lightning:select aura:id="PagerPage" name="PagerPage" label="{!v.sdgPage}" onchange="{!c.paging}">
                                         <aura:iteration items="{!v.Pages}" var="opt">
-                                            <option value="{!opt.value}" label="{!opt.label}" />
+                                            <option value="{!opt.value}" text="{!opt.label}" label="{!opt.label}" />
                                         </aura:iteration>
                                     </lightning:select>
 

@@ -17,8 +17,9 @@ global with sharing class sdgDataProviderApexExample implements sdgIDataProvider
         integer dataoffset = request.pageid * request.pagesize;
         integer datalimit = request.PageSize;
         sdgSecurity.CanQuery('sdgDataProviderApexExample:getData', 'Account', '', 'name', '', true);
-        
-        result.data = [select name from account where name like 'U%' ];
+
+        //This is commented to allow installation on an org where name is encrypted.         
+        //result.data = [select name from account where name like 'U%' ];
 
         result.query='CustomDataProviderExample';
         result.FullQueryCount = result.data.size();

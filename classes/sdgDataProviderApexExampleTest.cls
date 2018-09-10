@@ -44,7 +44,7 @@ public class sdgDataProviderApexExampleTest
         a2.name = 'united';
         insert a2;
         sdgresult sr2 = sdgDataProviderFactory.getData(req);
-        system.assertEquals(1, sr2.FullQueryCount, '1 Account to load starting with U');
+        system.assertEquals(2, sr2.FullQueryCount, '2 Accounts to load');
 
         test.stopTest();
 

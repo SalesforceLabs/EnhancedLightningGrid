@@ -9,5 +9,5 @@ After installing the package, you need to grant permission sets to users:
 
 # Documentation  
 [AppExchange Listing](https://appexchange.salesforce.com/listingDetail?listingId=a0N3A00000EVK8iUAH)   
-[User Guide](../blob/master/Enhanced%20Data%20Grid%20User%20Guide%20November%202017.pdf)  
+[User Guide](../master/Enhanced%20Data%20Grid%20User%20Guide%20November%202017.pdf)  
 [Custom data providers](https://docs.google.com/document/d/e/2PACX-1vS7bBZ7yxMt9soqmd3M8rMiLh0Whj370x70mQ7fLcdYjPR75QfqynSJ0FTvrCZF4Bs1MtEXMDzFPQYi/pub)

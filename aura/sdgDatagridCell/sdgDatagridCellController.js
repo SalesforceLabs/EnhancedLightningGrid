@@ -105,7 +105,19 @@
                           component,
                           helper.formatDurationDateTime(component, datevalue)
                         );
-                      } else {
+                      } 
+                    } else if (fieldstyle === "Numeric Date") {
+                        helper.CreateCmp(
+                          component,
+                          "lightning:formattedDateTime",
+                          {
+                            value: datevalue,
+                            year: "numeric",
+                            month: "numeric",
+                            day: "numeric"
+                          }
+                        );
+                    } else {
                         //Render this date WITHOUT a timezone
                         helper.CreateCmp(
                           component,
@@ -155,6 +167,18 @@
                       component,
                       helper.formatDurationDateTime(component, datetimevalue)
                     );
+                  } else if (fieldstyle === "Numeric Date") {
+                    var timezone = $A.get("$Locale.timezone");
+                    helper.CreateCmp(component, "lightning:formattedDateTime", {
+                      value: datetimevalue,
+                      timeZone: timezone,
+                      year: "numeric",
+                      month: "numeric",
+                      day: "numeric",
+                      hour: "numeric",
+                      minute: "numeric",
+                      second: "numeric"
+                    });
                   } else {
                     var timezone = $A.get("$Locale.timezone");
                     helper.CreateCmp(component, "lightning:formattedDateTime", {

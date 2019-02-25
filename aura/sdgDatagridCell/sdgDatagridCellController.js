@@ -112,7 +112,7 @@
                           {
                             value: datevalue,
                             year: "numeric",
-                            month: "numeric",
+                            month: "2-digit",
                             day: "numeric"
                           }
                         );
@@ -172,7 +172,7 @@
                       value: datetimevalue,
                       timeZone: timezone,
                       year: "numeric",
-                      month: "numeric",
+                      month: "2-digit",
                       day: "numeric",
                       hour: "numeric",
                       minute: "numeric",

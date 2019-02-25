@@ -105,8 +105,7 @@
                           component,
                           helper.formatDurationDateTime(component, datevalue)
                         );
-                      } 
-                    } else if (fieldstyle === "Numeric Date") {
+                      } else if (fieldstyle === "Numeric Date") {
                         helper.CreateCmp(
                           component,
                           "lightning:formattedDateTime",

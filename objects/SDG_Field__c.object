@@ -126,6 +126,11 @@
                     <default>false</default>
                     <label>CTI</label>
                 </value>
+                <value>
+                    <fullName>Numeric Date</fullName>
+                    <default>false</default>
+                    <label>Numeric Date</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>

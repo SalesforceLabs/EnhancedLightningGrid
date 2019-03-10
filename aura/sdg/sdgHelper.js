@@ -481,5 +481,40 @@
     }
 
     this.FireEvent(component, actionid, selectedrow);
-  }
+  },
+  
+  setTabTitle: function (component, event, helper) {
+        let workspaceAPI = component.find("workspace");
+        workspaceAPI.isConsoleNavigation().then(isConsoleNavigation => {
+            if (isConsoleNavigation) {
+                workspaceAPI.getEnclosingTabId().then(tabId => {
+                    if (tabId !== false) {
+                        workspaceAPI.isSubtab({
+                            tabId: tabId
+                        }).then(isSubTab => {
+                            // Only set the tab label if it is a subtab (otherwise it overwrites the primary object tab name)
+                            if (isSubTab) {
+                                workspaceAPI.getTabInfo({
+                                    tabId: tabId
+                                }).then(info => {
+                                    // Only update the tab if it is a standard__component
+                                    if (/standard__component/i.test(info.pageReference.type)) {
+                                        workspaceAPI.setTabLabel({
+                                            'tabId': tabId,
+                                            'label': component.get("v.TitleName")
+                                        });
+                                        workspaceAPI.setTabIcon({
+                                            'tabId': tabId,
+                                            'icon': component.get("v.SVGName"),
+                                            'iconAlt': component.get("v.TitleName")
+                                        })
+                                    }
+                                });
+                            }
+                        })
+                    }
+                });
+            }
+        });
+    }
 });

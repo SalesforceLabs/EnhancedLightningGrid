@@ -76,6 +76,7 @@
     <aura:attribute name="filtersize" type="String" />
 
     <lightning:flexipageRegionInfo width="{!v.width}" />
+    <lightning:workspaceAPI aura:id="workspace"/>
 
     <!-- Events -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />

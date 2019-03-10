@@ -35,6 +35,7 @@
 
     helper.getSDG(component);
     helper.getNamespace(component);
+    helper.setTabTitle(component, event, helper);
   },
   handleObjectManagerEvent: function(component, event, helper) {},
   paging: function(component, event, helper) {

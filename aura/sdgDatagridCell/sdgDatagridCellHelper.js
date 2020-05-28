@@ -29,10 +29,18 @@
     navToast.fire();
   },
   renderHyperLinktoObject: function(component, datachunk, datachunkid) {
+    var community = component.get("v.IsCommunity");
+    console.log('nikhil'+community);
     try {
       if (typeof datachunkid === "string" && typeof datachunk === "string") {
         if (datachunkid !== null && datachunk !== null) {
-          if (datachunkid !== "" && datachunk !== "") {
+          if (datachunkid !== "" && datachunk !== "" && community == true) {
+            this.CreateCmp(component, "lightning:formattedUrl", {
+              value: "/detail/" + datachunkid,
+              label: datachunk
+            });
+          }
+          else if(datachunkid !== "" && datachunk !== "" && community == false){
             this.CreateCmp(component, "lightning:formattedUrl", {
               value: "/" + datachunkid,
               label: datachunk

@@ -6,6 +6,7 @@
 <aura:component>
     <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
     <aura:attribute name="renderfield" type="object" access="global" />
+    <aura:attribute name="IsCommunity" type="Boolean" access="global" />
     <aura:attribute name="sdgAgo" type="String" access="public" default="{!$Label.c.sdgAgo}" />
     <aura:attribute name="sdgIn" type="String" access="public" default="{!$Label.c.sdgIn}" />
 

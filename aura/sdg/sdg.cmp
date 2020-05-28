@@ -41,6 +41,9 @@
     <aura:attribute name="isLoaded" type="Boolean" default="false" access="global" />
     <aura:attribute name="ShowDebug" type="Boolean" default="false" access="global" />
 
+    <!--Added for error in navigating on Community-->
+    <aura:attribute name="IsCommunity" type="Boolean" default="false" access="global" />
+
     <aura:attribute name="hasSummary" type="Boolean" default="false" />
     <aura:attribute name="summarydata" type="List" access="global" />
 
@@ -241,7 +244,7 @@
 
                                                     <aura:iteration items="{!row.data}" var="renderfield" indexVar="index">
 
-                                                        <c:sdgDatagridCell renderfield="{!renderfield}" />
+                                                        <c:sdgDatagridCell renderfield="{!renderfield}" IsCommunity="{!v.IsCommunity}"/>
 
 
                                                     </aura:iteration>

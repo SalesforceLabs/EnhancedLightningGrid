@@ -46,27 +46,17 @@
     <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <label>Sortable Data Grid Preference</label>
-    <nameField>
-        <displayFormat>{0000}</displayFormat>
-        <label>Sortable Data Grid Preferences Name</label>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Sortable Data Grid Preferences</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
-    <visibility>Public</visibility>
     <fields>
         <fullName>Filters__c</fullName>
         <deprecated>false</deprecated>
-        <encrypted>false</encrypted>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Filters</label>
         <length>32768</length>
@@ -89,7 +79,7 @@
     <fields>
         <fullName>sdgKey__c</fullName>
         <deprecated>false</deprecated>
-        <encrypted>false</encrypted>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>sdgKey</label>
         <length>50</length>
@@ -98,4 +88,15 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <label>Sortable Data Grid Preference</label>
+    <language>en_US</language>
+    <nameField>
+        <displayFormat>{0000}</displayFormat>
+        <label>Sortable Data Grid Preferences Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Sortable Data Grid Preferences</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

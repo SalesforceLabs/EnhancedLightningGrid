@@ -8,8 +8,6 @@
     />
     <design:attribute name="ShowDebug" label="Debug mode" description="Show the debug log" />
     <design:attribute name="UseCache" label="Cache Data" description="Cache result sets in the browser" />
-    <design:attribute name="UseBackground" label="Use Background request" description="Load data in the background rather than foreground"
-    />
     <design:attribute name="PreventResponsiveness" label="Disable Card view" description="Prevents responsive reflow when placed in narrow segments"
     />
     <design:attribute name="DefaultPageSize" label="Initial Page Size" datasource="10,20,50,100" default="10" />
@@ -18,4 +16,6 @@
     />
     <design:attribute name="FieldSetName" label="FieldSetName" description="Name of field set of child objects" />
 
+    <design:attribute name="SDGTag" label="Legacy Tag (Deprecated)" description="Legacy configuration - please use dropdown 'Data Provider' from now on"
+    />
 </design:component>

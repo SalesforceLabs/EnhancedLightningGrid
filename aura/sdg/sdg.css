@@ -44,6 +44,7 @@ position:relative;
 border: 1px solid rgb(221, 219, 218);
 border-radius: 0.25rem;
 background: white;
+    padding-top:5px;
 }
 .THIS .slds-card
 {

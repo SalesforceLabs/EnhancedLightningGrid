@@ -1,0 +1,7 @@
+<aura:event type="APPLICATION" description="DEPRECATED: Generic event for capturing anything thrown to ObjectHelper" >
+    <aura:attribute name="Action" type="String"/>
+    <aura:attribute name="sObjectID" type="String"/>
+    <aura:attribute name="sObjectTypeID" type="String"/>
+    <aura:attribute name="sObjectType" type="String"/>
+    <aura:attribute name="Payload" type="String" />
+</aura:event>

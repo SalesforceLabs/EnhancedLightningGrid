@@ -62,13 +62,28 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SDG__c.DisableSharing__c</field>
-        <readable>true</readable>
+        <field>SDG__c.Debug__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>SDG__c.Default_Sort__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SDG__c.DisableSharing__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SDG__c.Enable_cache__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SDG__c.Example_SOQL__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

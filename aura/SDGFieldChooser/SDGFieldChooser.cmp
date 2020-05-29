@@ -1,8 +1,3 @@
-<!-- Copyright (c) 2018, salesforce.com, inc. 
-    * All rights reserved. 
-    * SPDX-License-Identifier: BSD-3-Clause 
-    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
--->
 <aura:component controller="sdgDesigner" implements="force:hasRecordId">
     <aura:attribute name="rootObjectType" type="string" />
     <aura:attribute name="recordId" type="Id" />
@@ -21,7 +16,7 @@
     <aura:attribute name="Label" type="String" default="" />
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    <aura:method name="clearselection" action="{!c.clear}" />
+<aura:method name="clearselection" action="{!c.clear}" />
 
     <div class="slds-form-element">
         <label class="slds-form-element__label" for="input-id-02">{!v.Label}</label>

@@ -47,27 +47,19 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
     <enableBulkApi>false</enableBulkApi>
-    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>false</enableSearch>
     <enableSharing>false</enableSharing>
     <enableStreamingApi>false</enableStreamingApi>
-    <label>Sortable Data Grid Action</label>
-    <nameField>
-        <label>Name</label>
-        <type>Text</type>
-    </nameField>
-    <pluralLabel>Sortable Data Grid Actions</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
-    <startsWith>Vowel</startsWith>
-    <visibility>Public</visibility>
     <fields>
         <fullName>Action_Order__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Action Order</label>
         <precision>2</precision>
@@ -79,6 +71,7 @@
     </fields>
     <fields>
         <fullName>Action_Type__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Action Type</label>
         <required>false</required>
@@ -117,10 +110,12 @@
     </fields>
     <fields>
         <fullName>Event_Payload__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Payload for the event.  For LIST actions, will automatically replace #parentrecordId# with valid id.  For ROW actions, will automatically replace fieldnames with # at beginning and end with the corresponding values.  example: 
 {
-   "recordId": "#Id#"
+   &quot;recordId&quot;: &quot;#Id#&quot;
 }</inlineHelpText>
         <label>Event Payload</label>
         <length>32768</length>
@@ -130,6 +125,8 @@
     </fields>
     <fields>
         <fullName>Event__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Lightning event to raise: eg c.force:editRecord</inlineHelpText>
         <label>Event</label>
@@ -141,9 +138,11 @@
     </fields>
     <fields>
         <fullName>Icon__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
-        <label>Icon</label>
         <inlineHelpText>Icon name from Lightning Design System - eg standard:contact</inlineHelpText>
+        <label>Icon</label>
         <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -153,6 +152,7 @@
     <fields>
         <fullName>Requires_Createable__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>Only show this action if the user is required to have Create rights on the sObject on the grid.</inlineHelpText>
         <label>Requires Createable</label>
@@ -162,6 +162,7 @@
     <fields>
         <fullName>Requires_Deletable__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>Only show this action if the user is required to have Delete rights on the sObject on the grid.</inlineHelpText>
         <label>Requires Deletable</label>
@@ -171,6 +172,7 @@
     <fields>
         <fullName>Requires_Editable__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>Only show this action if the user is required to have Edit rights on the sObject on the grid.</inlineHelpText>
         <label>Requires Editable</label>
@@ -179,6 +181,7 @@
     </fields>
     <fields>
         <fullName>SDG__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>SDG</label>
         <referenceTo>SDG__c</referenceTo>
@@ -190,16 +193,28 @@
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
+    <label>Sortable Data Grid Action</label>
+    <language>en_US</language>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Sortable Data Grid Actions</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <startsWith>Vowel</startsWith>
     <validationRules>
         <fullName>Payload_must_end_with_brace</fullName>
         <active>true</active>
-        <errorConditionFormula>RIGHT( Event_Payload__c , 1) != '}'</errorConditionFormula>
+        <errorConditionFormula>RIGHT( Event_Payload__c , 1) != &apos;}&apos;</errorConditionFormula>
         <errorMessage>Payload must end with a }</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Payload_must_start_with_brace</fullName>
         <active>true</active>
-        <errorConditionFormula>LEFT( Event_Payload__c , 1) != '{'</errorConditionFormula>
+        <errorConditionFormula>LEFT( Event_Payload__c , 1) != &apos;{&apos;</errorConditionFormula>
         <errorMessage>Payload must start with a {</errorMessage>
     </validationRules>
+    <visibility>Public</visibility>
 </CustomObject>

@@ -47,126 +47,16 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
     <enableBulkApi>false</enableBulkApi>
-    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>false</enableSharing>
     <enableStreamingApi>false</enableStreamingApi>
-    <label>Sortable Data Grid</label>
-    <nameField>
-        <label>SDG Name</label>
-        <type>Text</type>
-    </nameField>
-    <pluralLabel>Sortable Data Grids</pluralLabel>
-    <searchLayouts>
-        <customTabListAdditionalFields>sObjectName__c</customTabListAdditionalFields>
-        <searchResultsAdditionalFields>sObjectName__c</searchResultsAdditionalFields>
-    </searchLayouts>
-    <sharingModel>Read</sharingModel>
-    <startsWith>Vowel</startsWith>
-    <visibility>Public</visibility>
-    <fields>
-        <fullName>All_Rows__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <inlineHelpText>Retrieve all rows - including archived and deleted records. Generally leave as false unless there's a specific need.</inlineHelpText>
-        <label>All Rows</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Default_Sort__c</fullName>
-        <inlineHelpText>Provides automatic sorting for the grid.  example: Name Asc</inlineHelpText>
-        <externalId>false</externalId>
-        <label>Default Sort</label>
-        <length>50</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>DisableSharing__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <inlineHelpText>Disable Sharing rules (ie run 'Without Sharing')</inlineHelpText>
-        <label>Disable Sharing Rules</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Filter__c</fullName>
-        <description/>
-        <externalId>false</externalId>
-        <inlineHelpText>Define SOQL filter here - no AND or WHERE necessary - this will always be applied</inlineHelpText>
-        <label>Filter</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Is_Valid__c</fullName>
-        <defaultValue>true</defaultValue>
-        <inlineHelpText>Whether to enable/disable the grid. </inlineHelpText>
-        <externalId>false</externalId>
-        <label>Is Valid</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Parent_Field_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Parent Field Name</label>
-        <inlineHelpText>Link to parent record if required.  To show Contacts for an Account - this value should be AccountId as that is the field on Contact that references the Account</inlineHelpText>
-        <length>250</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>SDG_Tag__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <externalId>false</externalId>
-        <inlineHelpText>Unique name for the grid</inlineHelpText>
-        <label>SDG Tag</label>
-        <length>80</length>
-        <required>true</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
-        <fullName>sObjectName__c</fullName>
-        <externalId>false</externalId>
-        <label>sObjectName</label>
-        <inlineHelpText>API Name of the core sObject to be rendering: eg Contact or CustomObject__c </inlineHelpText>
-        <length>50</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <validationRules>
-        <fullName>Make_sObjectName_Mandatory</fullName>
-        <active>true</active>
-        <description>sObjectName is mandatory</description>
-        <errorConditionFormula>ISBLANK( sObjectName__c )</errorConditionFormula>
-        <errorMessage>sObjectName is mandatory</errorMessage>
-    </validationRules>
-    <listViews>
-        <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>sObjectName__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
     <fieldSets>
         <fullName>default</fullName>
         <description>in the test class</description>
@@ -187,4 +77,162 @@
         </displayedFields>
         <label>default</label>
     </fieldSets>
+    <fields>
+        <fullName>All_Rows__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Retrieve all rows - including archived and deleted records. Generally leave as false unless there&apos;s a specific need.</inlineHelpText>
+        <label>All Rows</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Debug__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Displays a log on the UI</inlineHelpText>
+        <label>Deprecated</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Default_Sort__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Provides automatic sorting for the grid.  example: Name Asc</inlineHelpText>
+        <label>Default Sort</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DisableSharing__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Disable Sharing rules (ie run &apos;Without Sharing&apos;)</inlineHelpText>
+        <label>Disable Sharing Rules</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Enable_cache__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Cache data locally on the client to improve performance</inlineHelpText>
+        <label>Deprecated</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Example_SOQL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>DEPRECATED</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>DEPRECATED</inlineHelpText>
+        <label>DEPRECATED</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Filter__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Define SOQL filter here - no AND or WHERE necessary - this will always be applied</inlineHelpText>
+        <label>Filter</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_Valid__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Whether to enable/disable the grid.</inlineHelpText>
+        <label>Is Valid</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Parent_Field_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Link to parent record if required.  To show Contacts for an Account - this value should be AccountId as that is the field on Contact that references the Account</inlineHelpText>
+        <label>Parent Field Name</label>
+        <length>250</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SDG_Tag__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Unique name for the grid</inlineHelpText>
+        <label>SDG Tag</label>
+        <length>80</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>sObjectName__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>API Name of the core sObject to be rendering: eg Contact or CustomObject__c</inlineHelpText>
+        <label>sObjectName</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Sortable Data Grid</label>
+    <language>en_US</language>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>sObjectName__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>SDG Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Sortable Data Grids</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>sObjectName__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>sObjectName__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <fullName>Make_sObjectName_Mandatory</fullName>
+        <active>true</active>
+        <description>sObjectName is mandatory</description>
+        <errorConditionFormula>ISBLANK( sObjectName__c )</errorConditionFormula>
+        <errorMessage>sObjectName is mandatory</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
 </CustomObject>

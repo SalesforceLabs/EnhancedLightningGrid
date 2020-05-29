@@ -1,8 +1,3 @@
-<!-- Copyright (c) 2018, salesforce.com, inc. 
-    * All rights reserved. 
-    * SPDX-License-Identifier: BSD-3-Clause 
-    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
--->
 <aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="sdgDesigner">
 
     <aura:attribute name="recordId" type="String" />
@@ -11,7 +6,7 @@
     <aura:attribute name="namespace" type="string" default="sortablegrid" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
-    <div class="slds-page-header slds-page-header_object-home slds-m-bottom_medium slds-box">
+    <div class="slds-page-header slds-page-header_object-home slds-m-bottom_medium slds-box" style="">
         <div class="slds-grid">
             <div class="slds-col slds-has-flexi-truncate">
                 <div class="slds-media slds-no-space slds-grow">

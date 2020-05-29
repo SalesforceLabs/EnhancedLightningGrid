@@ -1,8 +1,3 @@
-<!-- Copyright (c) 2018, salesforce.com, inc. 
-    * All rights reserved. 
-    * SPDX-License-Identifier: BSD-3-Clause 
-    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
--->
 <aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:hasRecordId,force:appHostable"
     controller="sdgController" access="global" extends="c:sdgBase">
 
@@ -58,7 +53,6 @@
     <aura:attribute name="SVGName" type="String" access="global" default="standard:account" />
     <aura:attribute name="Title" type="String" access="global" />
     <aura:attribute name="UseCache" type="Boolean" default="true" access="global" />
-    <aura:attribute name="UseBackground" type="Boolean" default="false" access="global" />
     <aura:attribute name="RelationshipName" type="String" access="global" />
     <aura:attribute name="FieldSetName" type="String" access="global" />
     <aura:attribute name="SDGTag" type="string" access="global" />
@@ -105,7 +99,7 @@
 
                 <aura:set attribute="actions">
 
-                    <lightning:buttonGroup>
+                    <lightning:buttonGroup >
 
 
                         <aura:renderIf isTrue="{!v.TargetSize=='SMALL'}">
@@ -249,7 +243,7 @@
                                                     <aura:if isTrue="{!v.hasRowActions}">
                                                         <td class="actions" scope="col">
 
-                                                            <lightning:buttonGroup>
+                                                            <lightning:buttonGroup >
 
                                                                 <aura:iteration items="{!v.SDGActions}" var="action">
                                                                     <aura:if isTrue="{!action.Type=='Row Button'}">
@@ -312,7 +306,7 @@
 
                                     <lightning:select aura:id="PagerPage" name="PagerPage" label="{!v.sdgPage}" onchange="{!c.paging}">
                                         <aura:iteration items="{!v.Pages}" var="opt">
-                                            <option value="{!opt.value}" text="{!opt.label}" label="{!opt.label}" />
+                                            <option value="{!opt.value}" label="{!opt.label}" text="{!opt.label}" />
                                         </aura:iteration>
                                     </lightning:select>
 

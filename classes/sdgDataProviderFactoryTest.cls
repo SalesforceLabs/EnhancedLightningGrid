@@ -1,12 +1,31 @@
 /*
- * Copyright (c) 2018, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- */
+Sortable Data Grid
+Copyright © Felix Lindsay 21 November 2017
+flindsay@gmail.com
+All rights reserved
+*/
 @isTest
 public class sdgDataProviderFactoryTest {
 
+    static testMethod void checkDeprecatedDataProviders()
+    {
+        Boolean isError = false;
+        try{
+            SDG s = new sdg();
+            CustomDataProviderExample cdpe = new CustomDataProviderExample();
+            cdpe.LoadSDG(s);
+            sdgRelationshipDataProvider rdp = new sdgRelationshipDataProvider();
+            rdp.LoadSDG(s);
+            sdgMetadataDataProvider mdp = new sdgMetadataDataProvider();
+            mdp.LoadSDG(s);
+ 
+        }
+        catch(Exception ex)
+        {
+            isError = true;
+            system.assertEquals(true, isError, 'sdgDataProviderFactoryTest:checkDeprecatedDataProviders');
+        }
+    }
     static testMethod void getClassNameTestInvalid()
     {
         Test.startTest();

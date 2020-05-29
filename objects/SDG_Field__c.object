@@ -38,36 +38,67 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>Sortable_Data_Grid_Field_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
     <enableBulkApi>false</enableBulkApi>
-    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>false</enableSearch>
     <enableSharing>false</enableSharing>
     <enableStreamingApi>false</enableStreamingApi>
-    <label>Sortable Data Grid Field</label>
-    <nameField>
-        <displayFormat>{00000}</displayFormat>
-        <label>Name</label>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Sortable Data Grid Fields</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
-    <startsWith>Vowel</startsWith>
-    <visibility>Public</visibility>
+    <fieldSets>
+        <fullName>Default</fullName>
+        <description>In testing for Enhanced Related Lists</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>APIName__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FieldOrder__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CreatedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>sdg__r.Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Default</label>
+    </fieldSets>
     <fields>
         <fullName>APIName__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
-        <label>APIName</label>
         <inlineHelpText>APIName of the field to render - use dot notation for lookups to other objects: eg Account.Name</inlineHelpText>
+        <label>APIName</label>
         <length>250</length>
         <required>true</required>
         <trackTrending>false</trackTrending>
@@ -76,6 +107,7 @@
     </fields>
     <fields>
         <fullName>FieldOrder__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>FieldOrder</label>
         <precision>2</precision>
@@ -87,10 +119,11 @@
     </fields>
     <fields>
         <fullName>Field_Style__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
+        <inlineHelpText>Use a custom renderer with special behaviours</inlineHelpText>
         <label>Custom Renderer</label>
         <required>false</required>
-        <inlineHelpText>Use a custom renderer with special behaviours</inlineHelpText>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -132,6 +165,7 @@
     <fields>
         <fullName>Hide_Filter__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Hide Filter</label>
         <trackTrending>false</trackTrending>
@@ -139,6 +173,8 @@
     </fields>
     <fields>
         <fullName>Override_Label__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Only put a value here if you want to override the default field label (useful when the field is on another object from the core object - eg createdby.name</inlineHelpText>
         <label>Override Label</label>
@@ -151,14 +187,16 @@
     <fields>
         <fullName>is_valid_field__c</fullName>
         <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
-        <inlineHelpText>Enable/Disable field display.  If the package thinks there's something wrong with the config it will automatically set this value to false.</inlineHelpText>
+        <inlineHelpText>Enable/Disable field display.  If the package thinks there&apos;s something wrong with the config it will automatically set this value to false.</inlineHelpText>
         <label>Is Valid</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>sdg__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>sdg</label>
         <referenceTo>SDG__c</referenceTo>
@@ -169,39 +207,16 @@
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
-    <fieldSets>
-        <fullName>Default</fullName>
-        <description>In testing for Enhanced Related Lists</description>
-        <displayedFields>
-            <field>Name</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>APIName__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>FieldOrder__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>CreatedDate</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>LastModifiedDate</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>sdg__r.Name</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <label>Default</label>
-    </fieldSets>
+    <label>Sortable Data Grid Field</label>
+    <language>en_US</language>
+    <nameField>
+        <displayFormat>{00000}</displayFormat>
+        <label>Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Sortable Data Grid Fields</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
 </CustomObject>

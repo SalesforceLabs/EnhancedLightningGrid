@@ -1,0 +1,11 @@
+<aura:component >
+    <aura:attribute name="helptext" type="string" />
+    <aura:attribute name="ShowHelp" type="Boolean" default="false" />
+    
+    <div class="tooltip slds-p-left_small"><lightning:icon iconName="utility:info" size="xx-small" ></lightning:icon>
+        
+        <span class="tooltiptext"><div class="slds-popover slds-popover_tooltip" role="tooltip" id="help" >
+            <div class="slds-popover__body">{!v.helptext}</div>
+            </div></span>
+    </div>
+</aura:component>

@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 2018, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- */
+Sortable Data Grid
+Copyright © Felix Lindsay 21 November 2017
+flindsay@gmail.com
+All rights reserved
+*/
 public with sharing class sdgQueryEngine {
     public virtual class sdgQueryEngineException extends sdgException {}
     public  class sdgInvalidFilterException extends sdgException {}
@@ -108,7 +108,7 @@ public with sharing class sdgQueryEngine {
         Boolean DisableSharing = true;
         List<String> UserWhereClauses = new List<String>();
         List<String> CoreWhereClauses = new List<String>();
-        String sCountLimit = ' limit 1000';
+        String sCountLimit = ' limit 10000';
         String AllRows  = '';
 
         //Lots of steps:

@@ -1,10 +1,4 @@
-/*
- * Copyright (c) 2018, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- */
- global with sharing class sdgQueryBuilder {
+global with sharing class sdgQueryBuilder {
 public  class sdgInvalidFilterException extends sdgException {}
     
 global static string BuildSortClause (String sortColumn, String sortOrder){
@@ -26,11 +20,17 @@ global static string BuildFilterClause(String ColumnName, String FieldType, Stri
 {
     String sClause = '';
     String colName = String.escapeSingleQuotes(ColumnName);
-
+    List<String> StringTypes = new List<String>();
+    StringTypes.add(String.valueof(Schema.DisplayType.STRING));
+    StringTypes.add(String.valueof(Schema.DisplayType.EMAIL));
+    StringTypes.add(String.valueof(Schema.DisplayType.REFERENCE));
+    StringTypes.add(String.valueof(Schema.DisplayType.COMBOBOX));
+    StringTypes.add(String.valueof(Schema.DisplayType.ENCRYPTEDSTRING));
+    
     if (string.isblank(filteroperator))
             filteroperator = '=';
 
-            if (FieldType ==String.valueof(Schema.DisplayType.STRING))
+            if (StringTypes.contains(FieldType))
             {
                 if (String.isNotBlank(filtervalue.trim()))
                 {

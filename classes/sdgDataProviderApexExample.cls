@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 2018, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- */
+Sortable Data Grid
+Copyright © Felix Lindsay 21 November 2017
+flindsay@gmail.com
+All rights reserved
+*/
 global with sharing class sdgDataProviderApexExample implements sdgIDataProvider {
         global static Boolean isUserSelectable()
     {
@@ -17,9 +17,8 @@ global with sharing class sdgDataProviderApexExample implements sdgIDataProvider
         integer dataoffset = request.pageid * request.pagesize;
         integer datalimit = request.PageSize;
         sdgSecurity.CanQuery('sdgDataProviderApexExample:getData', 'Account', '', 'name', '', true);
-
-        //This is commented to allow installation on an org where name is encrypted.         
-        result.data = [select name from account  ];
+        
+        result.data = [select name from Account ];
 
         result.query='sdgDataProviderApexExample';
         result.FullQueryCount = result.data.size();

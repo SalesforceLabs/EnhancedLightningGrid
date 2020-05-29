@@ -1,0 +1,24 @@
+/* Tooltip container */
+.THIS.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.THIS.tooltip .tooltiptext {
+    visibility: hidden;
+    min-width: 200px;
+    
+    max-width: 300px;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.THIS.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

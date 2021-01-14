@@ -6,7 +6,7 @@
   
     <td data-label="{#v.renderfield.FieldLabel}" class="pullleft pullup">
 
-    <div class="slds-truncate">{!v.body}</div>
+    <div aura:id="body" class="slds-truncate">{!v.body}</div>
        
     </td>
 </aura:component>

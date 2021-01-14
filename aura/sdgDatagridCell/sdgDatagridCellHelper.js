@@ -79,7 +79,8 @@
         }
     },
     renderNumber: function (component, datachunk, scale) {
-        
+        var cmpTarget = component.find('body');
+        $A.util.addClass(cmpTarget, 'pullright');
         
         if (datachunk != null) {
             this.CreateCmp(component,
@@ -93,6 +94,8 @@
         
     },
     renderPercent: function (component, datachunk, scale) {
+        var cmpTarget = component.find('body');
+        $A.util.addClass(cmpTarget, 'pullright');
         
         if (datachunk != null) {
             if (datachunk != '') {

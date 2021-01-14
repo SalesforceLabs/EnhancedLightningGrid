@@ -5,21 +5,21 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>After</shortDescription>
-        <value>is After</value>
+        <value>Is After</value>
     </labels>
     <labels>
         <fullName>sdgAgo</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>sdgAgo</shortDescription>
-        <value>{0} ago</value>
+        <value>{0} Ago</value>
     </labels>
     <labels>
         <fullName>sdgBefore</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Before</shortDescription>
-        <value>is before</value>
+        <value>Is Before</value>
     </labels>
     <labels>
         <fullName>sdgContains</fullName>
@@ -33,7 +33,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Ends</shortDescription>
-        <value>Ends with</value>
+        <value>Ends With</value>
     </labels>
     <labels>
         <fullName>sdgEquals</fullName>
@@ -68,7 +68,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Greater than</shortDescription>
-        <value>Greater than</value>
+        <value>Greater Than</value>
     </labels>
     <labels>
         <fullName>sdgIn</fullName>
@@ -82,14 +82,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Last Month</shortDescription>
-        <value>Last month</value>
+        <value>Last Month</value>
     </labels>
     <labels>
         <fullName>sdgLastQuarter</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Last quarter</shortDescription>
-        <value>Last quarter</value>
+        <value>Last Quarter</value>
     </labels>
     <labels>
         <fullName>sdgLastWeek</fullName>
@@ -110,21 +110,21 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Less than</shortDescription>
-        <value>Less than</value>
+        <value>Less Than</value>
     </labels>
     <labels>
         <fullName>sdgNextMonth</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Next month</shortDescription>
-        <value>Next month</value>
+        <value>Next Month</value>
     </labels>
     <labels>
         <fullName>sdgNextQuarter</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Next Quarter</shortDescription>
-        <value>Next quarter</value>
+        <value>Next Quarter</value>
     </labels>
     <labels>
         <fullName>sdgNextWeek</fullName>
@@ -138,7 +138,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Next year</shortDescription>
-        <value>Next year</value>
+        <value>Next Year</value>
     </labels>
     <labels>
         <fullName>sdgNoData</fullName>
@@ -152,7 +152,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Not Contains</shortDescription>
-        <value>Does not contain</value>
+        <value>Does Not Contain</value>
     </labels>
     <labels>
         <fullName>sdgNotEquals</fullName>
@@ -187,14 +187,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>This Month</shortDescription>
-        <value>This month</value>
+        <value>This Month</value>
     </labels>
     <labels>
         <fullName>sdgThisQuarter</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>This quarter</shortDescription>
-        <value>This quarter</value>
+        <value>This Quarter</value>
     </labels>
     <labels>
         <fullName>sdgThisWeek</fullName>
@@ -208,7 +208,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>This Year</shortDescription>
-        <value>This year</value>
+        <value>This Year</value>
     </labels>
     <labels>
         <fullName>sdgToday</fullName>

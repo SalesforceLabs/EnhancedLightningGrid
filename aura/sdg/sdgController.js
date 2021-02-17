@@ -52,32 +52,35 @@
     reload: function (component, event, helper) {
         component.set('v.reloadseed', Date.now());
         helper.getResponseData(component);
-
     },
     filterUpdated: function (component, event, helper) {
-        component.set("v.ShowSDGError", false);
-        var filters = component.get("v.SDGFilters");
-        var filterlistlength = filters.length;
-        var newfilters = [];
-        var newSDGFieldID = event.getParam("SDGFieldID");
-
-        // create a map to deduplicate here...
-        for (var i = 0; i < filterlistlength; i++) {
-            if (filters[i].SDGFieldID != newSDGFieldID) {
-                newfilters.push(filters[i]);
+        try{
+            component.set("v.ShowSDGError", false);
+            var filters = component.get("v.SDGFilters");
+            var filterlistlength = filters.length;
+            var newfilters = [];
+            var newSDGFieldID = event.getParam("SDGFieldID");
+            
+            // create a map to deduplicate here...
+            for (var i = 0; i < filterlistlength; i++) {
+                if (filters[i].SDGFieldID != newSDGFieldID) {
+                    newfilters.push(filters[i]);
+                }
             }
+            
+            //Add the new value:
+            var newfilter = {
+                "FilterValue": event.getParam("FilterValue"),
+                "FilterOperator": event.getParam("FilterOperator"),
+                "SDGFieldID": event.getParam("SDGFieldID")
+            }
+            newfilters.push(newfilter);
+            component.set("v.SDGFilters", newfilters);
+            helper.AddToLog(component, 'Filters updated');
+            helper.getResponseData(component);
+        } catch (e){
+            console.error(e);
         }
-
-        //Add the new value:
-        var newfilter = {
-            "FilterValue": event.getParam("FilterValue"),
-            "FilterOperator": event.getParam("FilterOperator"),
-            "SDGFieldID": event.getParam("SDGFieldID")
-        }
-        newfilters.push(newfilter);
-        component.set("v.SDGFilters", newfilters);
-        helper.AddToLog(component, 'Filters updated');
-        helper.getResponseData(component);
     },
     handleSort: function (cmp, event, helper) {
         var val = event.getParam("value");
@@ -94,18 +97,32 @@
     },
     ClearFilters: function (component, event, helper) {
         var filters = component.find("cmpFilter");
-
+        
         if (filters) {
             var filterlistlength = filters.length;
-
+            
             // clear the values
             for (var i = 0; i < filterlistlength; i++) {
                 filters[i].set("v.FilterValue", "");
+                filters[i].set("v.FilterValuePreference", null);
             }
-
-            helper.AddToLog(component, 'Filters cleared');
+            
+            helper.AddToLog(component, 'Filters cleared')
+            helper.filterUpdated(component, event, helper);
         }
     },
+    ClearFilters2: function (component, event, helper) {
+        var filters = component.find("cmpFilter");
+        if (filters){
+            var filterlistlength = filters.length;
+            
+            // clear the values
+            for (var i = 0; i < filterlistlength; i++) {
+                filters[i].resetFilter();
+            }
+        }
+    },
+    
     checkboxchange: function (component, event, helper) {
         var idlist = component.get("v.CheckedRowIDs");
         if (event.getSource().get("v.checked")) {
@@ -207,6 +224,25 @@
     RaiseRowEventButton: function (component, event, helper) {
         var valuesString = event.getSource().get("v.value");
         helper.RaiseRowEvent(component, helper, valuesString);
+    },
+    PreviousPage: function (component, event, helper){
+        var pageNum = 1 * component.find("PagerPage").get("v.value");
+        
+        if (pageNum > 1){
+            component.find("PagerPage").set("v.value", pageNum-1);
+            component.set("v.isPaging", true);
+            helper.getResponseData(component);
+        }
+    },
+    NextPage: function(component, event, helper){
+        var pages = component.get("v.Pages");
+        var pageNum = 1 * component.find("PagerPage").get("v.value"); // We want it as a number
+        
+        if (pageNum < pages.length){
+            component.find("PagerPage").set("v.value", pageNum+1);
+            component.set("v.isPaging", true);
+            helper.getResponseData(component);
+        }
     }
 
 })

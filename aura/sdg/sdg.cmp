@@ -26,6 +26,7 @@
     <aura:attribute name="ErrorMessage" type="String" access="global" />
     <aura:attribute name="TitleName" type="String" access="private" />
     <aura:attribute name="Pages" type="List" access="global" default="" />
+    <aura:attribute name="PageNumber" type="Integer" access="global" />
     <aura:attribute name="reloadseed" type="String" access="global" default="" />
     <aura:attribute name="ShowComponent" type="Boolean" default="true" />
     <aura:attribute name="HideOnError" type="Boolean" default="true" access="global" />
@@ -119,6 +120,8 @@
 
                         </aura:renderIf>
                         <aura:renderIf isTrue="{!v.hasFilters}">
+                            <lightning:buttonIcon iconName="utility:reassign" variant="border-filled" class="{v.ToggleFilterStyle}" onclick="{! c.ClearFilters2 }"
+                                aura:id="ClearFiltersButton" alternativeText="Clear Filters." />
                             <lightning:buttonIcon iconName="utility:filterList" variant="border-filled" class="{!v.ToggleFilterStyle}" onclick="{! c.ToggleFilters }"
                                 aura:id="FilterToggleButton" alternativeText="Toggle Filters." />
                         </aura:renderIf>
@@ -304,7 +307,7 @@
                             <div class="slds-form_inline slds-p-around_xx-small">
                                 <div class=" slds-form-element">
 
-                                    <lightning:select aura:id="PagerPage" name="PagerPage" label="{!v.sdgPage}" onchange="{!c.paging}">
+                                    <lightning:select aura:id="PagerPage" name="PagerPage" label="{!v.sdgPage}" onchange="{!c.paging}" value="{!v.PageNumber}">
                                         <aura:iteration items="{!v.Pages}" var="opt">
                                             <option value="{!opt.value}" label="{!opt.label}" text="{!opt.label}" />
                                         </aura:iteration>
@@ -319,6 +322,11 @@
                                         <option value="100">100</option>
                                     </lightning:select>
                                 </div>
+
+                                <br/>
+
+                                <lightning:button variant="base" label="← Previous" title="Previous" onclick="{! c.PreviousPage }" disabled="{! v.PageNumber == '1' || v.PageNumber == 1 }" />
+                                <lightning:button variant="base" label="Next →" title="Next" onclick="{! c.NextPage }" disabled="{! v.PageNumber == v.Pages.length }" />
 
                             </div>
                         </aura:renderIf>

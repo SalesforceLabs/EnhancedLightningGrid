@@ -41,6 +41,32 @@
         }
 
     },
+    
+    reset: function (component, event, helper) {
+        var FieldType = component.get("v.SDGField").FieldType;
+        var operator = "";
+        
+        if (FieldType == 'DATE' || FieldType == 'DATETIME'){
+            component.find("DateField").set("v.value", "");
+            operator = component.find("DateOperatorField").get("v.value");
+        }
+        if (FieldType == 'INTEGER' || FieldType == 'DOUBLE' || FieldType == 'CURRENCY' || FieldType == 'PERCENT') {
+            component.find("NumberField").set("v.value", "");
+            operator = component.set("v.NumberOperator");
+        }
+        if (FieldType == 'ID' || FieldType == 'STRING' || FieldType == 'EMAIL' || FieldType == 'URL' || FieldType == 'PHONE' || FieldType == 'HYPERLINK') {
+            component.find("StringField").set("v.value", "");
+            operator = component.find("StringOperatorField").get("v.value");
+        }
+        if (FieldType == 'BOOLEAN'){
+            component.find("CheckboxField").set("v.value", "");
+        }
+        if (FieldType == 'PICKLIST'){
+            component.find("PicklistField").set("v.value", "");
+        }
+        
+        helper.fireUpdate(component, "", operator);
+    },
 
     updateString: function (component, event, helper) {
         var value = component.find("StringField").get("v.value");

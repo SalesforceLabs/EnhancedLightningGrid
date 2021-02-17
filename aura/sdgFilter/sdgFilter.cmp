@@ -4,6 +4,9 @@
     * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
 -->
 <aura:component controller="sdgController">
+    <aura:method name="resetFilter" action="{!c.reset}" description="Reset this filter" />
+    
+        
     <aura:attribute name="SDGField" type="object" />
 
     <aura:attribute name="FilterOperator" type="string" />

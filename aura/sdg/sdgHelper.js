@@ -128,6 +128,7 @@
             });
 
     },
+    
     Waiting: function (component) {
         this.AddToLog(component, 'Mode: Waiting');
         var table = component.find("sdgdatatablewrapper");

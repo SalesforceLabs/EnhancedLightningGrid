@@ -50,7 +50,7 @@
         navEvt.fire();
     },
     reload: function (component, event, helper) {
-	component.set('v.CheckedRowIDs',[]);	
+		component.set('v.CheckedRowIDs',[]);	
         component.set('v.reloadseed', Date.now());
         helper.getResponseData(component);
 

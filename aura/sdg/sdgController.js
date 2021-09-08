@@ -50,9 +50,10 @@
         navEvt.fire();
     },
     reload: function (component, event, helper) {
+        component.set('v.CheckedRowIDs',[]);
         component.set('v.reloadseed', Date.now());
         helper.getResponseData(component);
-
+        
     },
     filterUpdated: function (component, event, helper) {
         component.set("v.ShowSDGError", false);
@@ -148,7 +149,6 @@
     CheckAll: function (component, event, helper) {
 
         //var idlist = component.get("v.CheckedRowIDs");
-
         var idlist = [];
         var checkboxes = component.find('checkrow');
         var checkboxeslength = checkboxes.length;

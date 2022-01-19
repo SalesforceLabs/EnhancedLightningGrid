@@ -15,6 +15,8 @@ public class sdgPreferences {
         req.SDGTag = SDGTag;
 
         system.debug('sdgPreferences:GenerateRequestWithFilters');
+        if (sdgSecurity.CanQuery('sdgPreferences:GenerateRequestWithFilters', 'SDG_Preferences__c', '', 'filters__c', '',false))
+        {
         if (sdg.InternalData != null)
         {
             if (sdg.internalData.sUniqueKey!=null)
@@ -46,38 +48,47 @@ public class sdgPreferences {
             }
             }
         }
+    }
         return req;
     }
 
     public static void SaveFilters(SDGRequest request, String sUniqueKey)
     {
         //Save the Filters:
-        String filters = JSON.serialize(request.Filters);
-        Sdg_preferences__c pref = new sdg_preferences__c();
-        pref.User__c = UserInfo.getUserId();
-        pref.Filters__c = filters;
-        pref.sdgKey__c = sUniqueKey;
-        if (String.isNotBlank(sUniqueKey))
+        Boolean canSavePreferences =schema.SObjectType.sdg_preferences__c.isCreateable() && schema.sObjectType.sdg_preferences__c.isDeletable() && schema.sobjecttype.sdg_preferences__c.fields.User__c.isCreateable() && Schema.SObjectType.sdg_preferences__c.fields.Filters__c.isCreateable() && Schema.SObjectType.sdg_preferences__c.fields.sdgKey__c.isCreateable();
+        if (canSavePreferences)
         {
-                try
-                {
-                    //Can't upsert using multiple columns so delete existing
-                    if ( SDGSecurity.canQuery('sdgPreferences:SaveFilters', 'sdg_preferences__c','filters__c,user__c,sdgKey__c', '',sdgNamespaceUtility.GetNamespace(), false))
+            String filters = JSON.serialize(request.Filters);
+            Sdg_preferences__c pref = new sdg_preferences__c();
+            pref.User__c = UserInfo.getUserId();
+            pref.Filters__c = filters;
+            pref.sdgKey__c = sUniqueKey;
+            if (String.isNotBlank(sUniqueKey))
+            {
+                    try
                     {
+                        //Can't upsert using multiple columns so delete existing
+                        if ( SDGSecurity.canQuery('sdgPreferences:SaveFilters', 'sdg_preferences__c','filters__c,user__c,sdgKey__c', '',sdgNamespaceUtility.GetNamespace(), false))
+                        {
 
-                            List<sdg_preferences__c> oldpref= [select id from sdg_preferences__c where user__c = :UserInfo.getUserID() and sdgKey__c = :sUniqueKey];
-                            if (Schema.sObjectType.sdg_preferences__c.isDeletable())
-                                delete oldpref;
-                            if (Schema.sObjectType.sdg_preferences__c.isCreateable())
-                                insert pref;
+                                List<sdg_preferences__c> oldpref= [select id from sdg_preferences__c where user__c = :UserInfo.getUserID() and sdgKey__c = :sUniqueKey];
+                                if (Schema.sObjectType.sdg_preferences__c.isDeletable())
+                                {
+                                    delete oldpref;
+                                }
+                                if (Schema.sObjectType.sdg_preferences__c.isCreateable())
+                                {
+                                    insert pref;
+                                }
+                        }
                     }
-                }
-                catch (DMLException ex)
-                {
-                    //this is probably a race condition on aura calls so ignore
-                    system.debug('sdgPreferences:SaveFilters: DMLException - ignoring');
-                }
+                    catch (DMLException ex)
+                    {
+                        //this is probably a race condition on aura calls so ignore
+                        system.debug('sdgPreferences:SaveFilters: DMLException - ignoring');
+                    }
 
+            }
         }
     }
 }

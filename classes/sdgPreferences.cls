@@ -15,40 +15,40 @@ public class sdgPreferences {
         req.SDGTag = SDGTag;
 
         system.debug('sdgPreferences:GenerateRequestWithFilters');
-        if (sdgSecurity.CanQuery('sdgPreferences:GenerateRequestWithFilters', 'SDG_Preferences__c', '', 'filters__c', '',false))
+        if (sdgSecurity.CanQuery('sdgPreferences:GenerateRequestWithFilters', 'SDG_Preferences__c', 'filters__c', '', sdgNamespaceUtility.GetNamespace(),false))
         {
-        if (sdg.InternalData != null)
-        {
-            if (sdg.internalData.sUniqueKey!=null)
+            if (sdg.InternalData != null)
             {
-            //Get the user preferences
-            List<sdg_preferences__c> oldpref= [select filters__c from sdg_preferences__c where user__c = :UserInfo.getUserID() and sdgKey__c = :sdg.InternalData.sUniqueKey];
-            if (oldpref.size()>0)
-            {
-                try
+                if (sdg.internalData.sUniqueKey!=null)
                 {
-                    system.debug('sdgPreferences:GenerateRequestWithFilters: retrieving filters');
-                    req.filters = (List<SDGFilter>)JSON.deserialize(oldpref[0].filters__c, List<SDGFilter>.class);
-                    Map<String, SDGFilter> mpFilters = new Map<String, SDGFilter>();
-                    for (SDGFilter filter : req.filters)
+                //Get the user preferences
+                List<sdg_preferences__c> oldpref= [select filters__c from sdg_preferences__c where user__c = :UserInfo.getUserID() and sdgKey__c = :sdg.InternalData.sUniqueKey];
+                if (oldpref.size()>0)
+                {
+                    try
                     {
-                        mpFilters.put(filter.SDGFieldID, filter);
-                    }
-                    for(SDGField field : sdg.SDGFields)
-                    {
-                        if (mpFilters.containsKey(field.ID))
-                            field.Preferences = mpFilters.get(field.ID);
-                    }
+                        system.debug('sdgPreferences:GenerateRequestWithFilters: retrieving filters');
+                        req.filters = (List<SDGFilter>)JSON.deserialize(oldpref[0].filters__c, List<SDGFilter>.class);
+                        Map<String, SDGFilter> mpFilters = new Map<String, SDGFilter>();
+                        for (SDGFilter filter : req.filters)
+                        {
+                            mpFilters.put(filter.SDGFieldID, filter);
+                        }
+                        for(SDGField field : sdg.SDGFields)
+                        {
+                            if (mpFilters.containsKey(field.ID))
+                                field.Preferences = mpFilters.get(field.ID);
+                        }
 
+                    }
+                    catch(exception ex)
+                    {
+                        //ignore this - caused by invalid/out of date filters usually
+                    }
                 }
-                catch(exception ex)
-                {
-                    //ignore this - caused by invalid/out of date filters usually
                 }
-            }
             }
         }
-    }
         return req;
     }
 

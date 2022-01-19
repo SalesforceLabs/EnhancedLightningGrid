@@ -18,7 +18,7 @@ global with sharing class sdgDataProviderApexExample implements sdgIDataProvider
         integer datalimit = request.PageSize;
         sdgSecurity.CanQuery('sdgDataProviderApexExample:getData', 'Account', '', 'name', '', true);
         
-        result.data = [select name from Account ];
+        result.data = [select name from Account limit 1000];
 
         result.query='sdgDataProviderApexExample';
         result.FullQueryCount = result.data.size();

@@ -106,7 +106,7 @@ public with sharing class sdgDataProviderFactory  {
                 throw new sdgDataProviderFactoryException('Unable to get class', ex);
             }
         }
-        return null;
+        //return null;
     }
     private static sdgDataProviderType GetType(String tag)
     {

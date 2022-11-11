@@ -9,14 +9,13 @@
 
     <aura:attribute name="sObjectType" type="String" access="public" />
     <aura:attribute name="rtid" type="String" access="public" />    
-   
-    <style>
+
+    <aura:html tag="style">
         <!-- just to ensure it's not visible at initial load time -->
         .slds-hide{
-        display:none;
-        } 
-    </style>
-  
+            display:none;
+        }
+    </aura:html>
 
     <div class="slds hide" aura:id="wrapper"  >
         <div class="slds-hide" aura:id="createdialog">

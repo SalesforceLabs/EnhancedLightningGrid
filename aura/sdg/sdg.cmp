@@ -2,6 +2,7 @@
     controller="sdgController" access="global" extends="c:sdgBase">
 
     <aura:attribute name="recordId" type="String" access="global" />
+    <aura:attribute name="record" type="sObject" access="global" />
 
     <aura:attribute name="SDGFields" type="List" access="global" />
     <aura:attribute name="SDG" type="object" access="global" />
@@ -79,14 +80,13 @@
     <aura:handler event="force:refreshView" action="{!c.reload}" />
 
     <c:ObjectHelper aura:id="ObjectHelper" />
-
-    <style>
+    
+    <aura:html tag="style">
         .SDGhidden {
             display: none;
-
             visibility: hidden;
         }
-    </style>
+    </aura:html>
 
     <aura:if isTrue="{!v.ShowComponent}">
         <div class="sdgborder">

@@ -1,14 +1,17 @@
 /*
-Sortable Data Grid
-Copyright © Felix Lindsay 21 November 2017
-flindsay@gmail.com
-All rights reserved
-*/
+ * Copyright (c) 2018, salesforce.com, inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+/* sfca-disable ApexFlsViolationRule */
 public with sharing class sdgImportExport {
     static integer CURRENTVERSION = 1;
     @AuraEnabled
     public static String ExportSDG(String Id)
     {
+        if (schema.sobjectType.sdg__c.isAccessible())
+        {
         sdgExportFormat pak = new sdgExportFormat();
         pak.version = CURRENTVERSION;
         sdg__c sdg = [select name, sdg_tag__c, default_sort__c, filter__c, is_valid__c, Parent_Field_Name__c,  sObjectName__c, All_Rows__c, DisableSharing__c, (select name, APIName__c, Field_Style__c, FieldOrder__c, Hide_Filter__c, is_valid_field__c, Override_Label__c, sdg__c from SDGFields__r),  (select name, Action_Order__c, Action_Type__c, Event__c, Event_Payload__c, Requires_Createable__c, Requires_Deletable__c, Requires_Editable__c, SDG__c, Icon__c from SDG_Actions__r)  from sdg__c where id = :Id limit 1];
@@ -27,50 +30,59 @@ public with sharing class sdgImportExport {
         String payload = JSON.serialize(pak);
         return payload;
     }
+    else {
+        return '';
+    }
+    }
     @AuraEnabled
     public static String ImportSDG(String payload)
     {
-
-        String Id;
-        sdgExportFormat pak;
-        try
+        if (schema.sobjectType.sdg__c.isCreateable())
         {
-            pak = (sdgExportFormat)JSON.deserializeStrict(payload, sdgExportFormat.class);
-        }
-        catch (Exception ex)
-        {
-            throw new AuraHandledException('Unable to parse payload.  Please check you copied correctly.');
-        }
-
-        if (pak.version == CURRENTVERSION)
-        {
+            String Id;
+            sdgExportFormat pak;
             try
             {
-                sdg__c sdg = pak.sdg;
-                insert sdg;
-                for(sdg_action__c action : sdg.SDG_Actions__r)
-                {
-                    action.sdg__c = sdg.id;
-                }
-                for(sdg_field__c field : sdg.SDGFields__r)
-                {
-
-                    field.sdg__c = sdg.id;
-                }
-                insert sdg.SDG_Actions__r;
-                insert sdg.SDGFields__r;
-                ID = sdg.Id;
+                pak = (sdgExportFormat)JSON.deserializeStrict(payload, sdgExportFormat.class);
             }
             catch (Exception ex)
             {
-                throw new AuraHandledException('Unable to insert payload: ' + ex.getMessage());
+                throw new AuraHandledException('Unable to parse payload.  Please check you copied correctly.');
             }
+
+            if (pak.version == CURRENTVERSION)
+            {
+                try
+                {
+                    sdg__c sdg = pak.sdg;
+                    insert sdg;
+                    for(sdg_action__c action : sdg.SDG_Actions__r)
+                    {
+                        action.sdg__c = sdg.id;
+                    }
+                    for(sdg_field__c field : sdg.SDGFields__r)
+                    {
+
+                        field.sdg__c = sdg.id;
+                    }
+                    insert sdg.SDG_Actions__r;
+                    insert sdg.SDGFields__r;
+                    ID = sdg.Id;
+                }
+                catch (Exception ex)
+                {
+                    throw new AuraHandledException('Unable to insert payload: ' + ex.getMessage());
+                }
+            }
+            else
+            {
+                throw new AuraHandledException('Invalid version provided - you cannot import this version into this org.');
+            }
+            return ID;
         }
-        else
-        {
-            throw new AuraHandledException('Invalid version provided - you cannot import this version into this org.');
+        else {
+            throw new AuraHandledException('Invalid permissions for current user');
         }
-        return ID;
     }
     public static SDG__c GetSDG(String payload)
     {

@@ -39,24 +39,24 @@ public static integer CountQuery(string query, Boolean DisableSharing)
     public with sharing class sdgDatabaseWithSharing {
         public integer CountQuery(string query)
         {
-            return database.countQuery(query);
+            return database.countQuery(String.escapeSingleQuotes(query));
         }
 
         public List<SObject> Query(string query)
         {
-            return database.Query(query);
+            return database.Query(String.escapeSingleQuotes(query));
         }
     }
 
     private without sharing class sdgDatabaseWithoutSharing{
         public integer CountQuery(string query)
         {
-            return database.countQuery(query);
+            return database.countQuery(String.escapeSingleQuotes(query));
         }
 
         public List<SObject> Query(string query)
         {
-            return database.Query(query);
+            return database.Query(String.escapeSingleQuotes(query));
         }
     }
 

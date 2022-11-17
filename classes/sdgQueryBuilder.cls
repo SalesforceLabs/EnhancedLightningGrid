@@ -9,9 +9,9 @@ global static string BuildSortClause (String sortColumn, String sortOrder){
     if (String.isNotBlank(sortColumn))
     {
         if (sortOrder == 'A')
-            sSortClause = ' ORDER BY ' + sortColumn + ' ASC NULLS FIRST';
+            sSortClause = ' ORDER BY ' + String.escapeSingleQuotes(sortColumn) + ' ASC NULLS FIRST';
         else
-            sSortClause = ' ORDER BY ' + sortColumn + ' DESC NULLS LAST';
+            sSortClause = ' ORDER BY ' + String.escapeSingleQuotes(sortColumn) + ' DESC NULLS LAST';
     }
     return sSortClause;
 }
@@ -87,7 +87,7 @@ global static string BuildFilterClause(String ColumnName, String FieldType, Stri
                     Set<String> literaldatevalues = new set<String>{'THIS_WEEK', 'LAST_WEEK', 'NEXT_WEEK', 'TODAY', 'TOMORROW', 'YESTERDAY',  'NEXT_MONTH','THIS_MONTH', 'LAST_MONTH', 'LAST_QUARTER', 'THIS_QUARTER', 'NEXT_QUARTER', 'LAST_YEAR', 'THIS_YEAR', 'NEXT_YEAR'};
                         if (literaldatevalues.contains(filteroperator))
                     {
-                        sclause = colName + ' = ' + filteroperator + ' ';
+                        sclause = colName + ' = ' + String.escapeSingleQuotes(filteroperator) + ' ';
 
                     }
                 else

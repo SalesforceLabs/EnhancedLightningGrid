@@ -15,35 +15,38 @@ public class sdgPreferences {
         req.SDGTag = SDGTag;
 
         system.debug('sdgPreferences:GenerateRequestWithFilters');
-        if (sdg.InternalData != null)
+        if (sdgSecurity.CanQuery('sdgPreferences:GenerateRequestWithFilters', 'SDG_Preferences__c', 'filters__c', '', sdgNamespaceUtility.GetNamespace(),false))
         {
-            if (sdg.internalData.sUniqueKey!=null)
+            if (sdg.InternalData != null)
             {
-            //Get the user preferences
-            List<sdg_preferences__c> oldpref= [select filters__c from sdg_preferences__c where user__c = :UserInfo.getUserID() and sdgKey__c = :sdg.InternalData.sUniqueKey];
-            if (oldpref.size()>0)
-            {
-                try
+                if (sdg.internalData.sUniqueKey!=null)
                 {
-                    system.debug('sdgPreferences:GenerateRequestWithFilters: retrieving filters');
-                    req.filters = (List<SDGFilter>)JSON.deserialize(oldpref[0].filters__c, List<SDGFilter>.class);
-                    Map<String, SDGFilter> mpFilters = new Map<String, SDGFilter>();
-                    for (SDGFilter filter : req.filters)
+                //Get the user preferences
+                List<sdg_preferences__c> oldpref= [select filters__c from sdg_preferences__c where user__c = :UserInfo.getUserID() and sdgKey__c = :sdg.InternalData.sUniqueKey];
+                if (oldpref.size()>0)
+                {
+                    try
                     {
-                        mpFilters.put(filter.SDGFieldID, filter);
-                    }
-                    for(SDGField field : sdg.SDGFields)
-                    {
-                        if (mpFilters.containsKey(field.ID))
-                            field.Preferences = mpFilters.get(field.ID);
-                    }
+                        system.debug('sdgPreferences:GenerateRequestWithFilters: retrieving filters');
+                        req.filters = (List<SDGFilter>)JSON.deserialize(oldpref[0].filters__c, List<SDGFilter>.class);
+                        Map<String, SDGFilter> mpFilters = new Map<String, SDGFilter>();
+                        for (SDGFilter filter : req.filters)
+                        {
+                            mpFilters.put(filter.SDGFieldID, filter);
+                        }
+                        for(SDGField field : sdg.SDGFields)
+                        {
+                            if (mpFilters.containsKey(field.ID))
+                                field.Preferences = mpFilters.get(field.ID);
+                        }
 
+                    }
+                    catch(exception ex)
+                    {
+                        //ignore this - caused by invalid/out of date filters usually
+                    }
                 }
-                catch(exception ex)
-                {
-                    //ignore this - caused by invalid/out of date filters usually
                 }
-            }
             }
         }
         return req;
@@ -52,32 +55,40 @@ public class sdgPreferences {
     public static void SaveFilters(SDGRequest request, String sUniqueKey)
     {
         //Save the Filters:
-        String filters = JSON.serialize(request.Filters);
-        Sdg_preferences__c pref = new sdg_preferences__c();
-        pref.User__c = UserInfo.getUserId();
-        pref.Filters__c = filters;
-        pref.sdgKey__c = sUniqueKey;
-        if (String.isNotBlank(sUniqueKey))
+        Boolean canSavePreferences =schema.SObjectType.sdg_preferences__c.isCreateable() && schema.sObjectType.sdg_preferences__c.isDeletable() && schema.sobjecttype.sdg_preferences__c.fields.User__c.isCreateable() && Schema.SObjectType.sdg_preferences__c.fields.Filters__c.isCreateable() && Schema.SObjectType.sdg_preferences__c.fields.sdgKey__c.isCreateable();
+        if (canSavePreferences)
         {
-                try
-                {
-                    //Can't upsert using multiple columns so delete existing
-                    if ( SDGSecurity.canQuery('sdgPreferences:SaveFilters', 'sdg_preferences__c','filters__c,user__c,sdgKey__c', '',sdgNamespaceUtility.GetNamespace(), false))
+            String filters = JSON.serialize(request.Filters);
+            Sdg_preferences__c pref = new sdg_preferences__c();
+            pref.User__c = UserInfo.getUserId();
+            pref.Filters__c = filters;
+            pref.sdgKey__c = sUniqueKey;
+            if (String.isNotBlank(sUniqueKey))
+            {
+                    try
                     {
+                        //Can't upsert using multiple columns so delete existing
+                        if ( SDGSecurity.canQuery('sdgPreferences:SaveFilters', 'sdg_preferences__c','filters__c,user__c,sdgKey__c', '',sdgNamespaceUtility.GetNamespace(), false))
+                        {
 
-                            List<sdg_preferences__c> oldpref= [select id from sdg_preferences__c where user__c = :UserInfo.getUserID() and sdgKey__c = :sUniqueKey];
-                            if (Schema.sObjectType.sdg_preferences__c.isDeletable())
-                                delete oldpref;
-                            if (Schema.sObjectType.sdg_preferences__c.isCreateable())
-                                insert pref;
+                                List<sdg_preferences__c> oldpref= [select id from sdg_preferences__c where user__c = :UserInfo.getUserID() and sdgKey__c = :sUniqueKey];
+                                if (Schema.sObjectType.sdg_preferences__c.isDeletable())
+                                {
+                                    delete oldpref;
+                                }
+                                if (Schema.sObjectType.sdg_preferences__c.isCreateable())
+                                {
+                                    insert pref;
+                                }
+                        }
                     }
-                }
-                catch (DMLException ex)
-                {
-                    //this is probably a race condition on aura calls so ignore
-                    system.debug('sdgPreferences:SaveFilters: DMLException - ignoring');
-                }
+                    catch (DMLException ex)
+                    {
+                        //this is probably a race condition on aura calls so ignore
+                        system.debug('sdgPreferences:SaveFilters: DMLException - ignoring');
+                    }
 
+            }
         }
     }
 }

@@ -53,7 +53,7 @@
         component.set('v.CheckedRowIDs',[]);
         component.set('v.reloadseed', Date.now());
         helper.getResponseData(component);
-        
+        var idlist = [];
     },
     filterUpdated: function (component, event, helper) {
         component.set("v.ShowSDGError", false);

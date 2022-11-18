@@ -63,6 +63,7 @@ global sdgField(String ID, String Label, String ColumnName, String FieldType, St
     this.canSort = canSort;
     this.canFilter = canFilter;
     this.FieldOrder = FieldOrder;
+    this.options = options;
 }
 // Compare action based on the actionorder.
 public Integer compareTo(Object compareTo) {

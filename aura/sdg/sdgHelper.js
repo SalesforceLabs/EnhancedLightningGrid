@@ -407,6 +407,9 @@
             //build payload:
             var payload = evt.Payload;
             payload = payload.replace(/#parentrecordId#/gi, component.get('v.recordId'));
+            
+            console.log('===> ', JSON.stringify(component));
+            debugger;
 
             var idlist = component.get("v.CheckedRowIDs");
             payload = payload.replace(/#Ids#/gi, idlist.join());

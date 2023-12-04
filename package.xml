@@ -333,5 +333,5 @@
         <members>SDG__c.Make Name Unique</members>
         <name>WorkflowRule</name>
     </types>
-    <version>45.0</version>
+    <version>56.0</version>
 </Package>

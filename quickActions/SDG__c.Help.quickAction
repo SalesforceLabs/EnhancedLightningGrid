@@ -2,7 +2,7 @@
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
     <height>500</height>
     <label>Help</label>
-    <lightningComponent>sortablegrid__sdgHelp</lightningComponent>
+    <lightningComponent>sdgHelp</lightningComponent>
     <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <type>LightningComponent</type>
     <width>-100</width>

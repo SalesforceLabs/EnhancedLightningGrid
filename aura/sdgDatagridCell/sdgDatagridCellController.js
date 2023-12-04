@@ -30,7 +30,7 @@
                 else {
                     switch (fieldtype) {
                         case "STRING":
-                            if (field.FieldName.toLowerCase() == 'name' || field.FieldName.toLowerCase() == 'casenumber') {
+                            if (field.FieldName.toLowerCase() == 'name') {
                                 helper.renderHyperLinktoObject(component, datachunk, datachunkid);
                             }
                             else {

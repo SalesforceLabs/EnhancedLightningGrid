@@ -4,6 +4,10 @@
         <application>Sortable_Data_Grids</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <classAccesses>
+        <apexClass>sdgController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <fieldPermissions>
         <editable>true</editable>
         <field>SDG_Action__c.Action_Type__c</field>
@@ -65,11 +69,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>SDG__c.Debug__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>SDG__c.Default_Sort__c</field>
         <readable>true</readable>
@@ -78,16 +77,6 @@
         <editable>false</editable>
         <field>SDG__c.DisableSharing__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>SDG__c.Enable_cache__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>SDG__c.Example_SOQL__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
